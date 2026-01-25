@@ -135,3 +135,124 @@
 
 
 
+
+// 2D Arrays | Spiral Matrix Traversal | Boundary Method
+// Time Complexity: O(rows × cols)
+// Space Complexity: O(1) (no extra array)
+
+// public class twoDArray
+// {
+//        public static void printSpiral(int matrix[][])
+//        {
+//               int startrow = 0;
+//               int startcol = 0;
+//               int endrow = matrix.length-1;
+//               int endcol = matrix[0].length-1;
+
+//               while(startrow <= endrow && startcol <= endcol)
+//               {
+//                      for(int j = startcol; j <= endcol; j++)
+//                      {
+//                             System.out.print(matrix[startrow][j]+" ");
+//                      }
+
+//                      for(int i = startrow+1; i <= endrow; i++)
+//                      {
+//                             System.out.print(matrix[i][endcol]+" ");
+//                      }
+
+//                      if(startrow < endrow)
+//                      {
+//                             for(int j = endcol-1; j >= startcol; j--)
+//                             {
+//                             System.out.print(matrix[endrow][j]+" ");
+//                             }
+//                      }
+
+//                      if(startcol < endcol)
+//                      {
+//                             for(int i = endrow-1; i >= startrow+1; i--)
+//                             {
+//                             System.out.print(matrix[i][startcol]+" ");
+//                             }
+//                      }
+
+//                      startrow++;
+//                      startcol++;
+//                      endrow--;
+//                      endcol--;
+//               }
+//        }
+
+
+
+
+//        public static void main(String[] args)
+//        {
+//               int matrix[][] =
+//               {
+//               {1,  2,  3,  4},
+//               {5,  6,  7,  8},
+//               {9, 10, 11, 12},
+//               {13,14, 15,16}
+//               };
+
+//               printSpiral(matrix);
+//        }
+// }
+
+
+
+// 2D Arrays | Diagonal Traversal | Diagonal Sum (Optimized)
+// ⏱️ Time Complexity O(n) 
+// 📦 Space Complexity O(1) 
+
+// public class twoDArray
+// {
+
+//        public static int diagonalSum(int matrix[][])
+//        {
+//               int sum = 0;
+//               int n = matrix.length;
+
+//               for(int i = 0; i < n; i++)
+//               {
+//                      sum = sum + matrix[i][i];
+
+
+//                      if(i != n-1-i)
+//                      {
+//                      sum = sum + matrix[i][n-1-i];
+//                      }
+//               }
+//               return sum;
+              
+//        }
+
+//        public static void main(String[] args) {
+//               int matrix[][] = {
+//                             { 1, 2, 3, 4 },
+//                             { 5, 6, 7, 8 },
+//                             { 9, 10, 11, 12 },
+//                             { 13, 14, 15, 16 }
+//               };
+
+//               System.out.println(diagonalSum(matrix));
+//        }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
