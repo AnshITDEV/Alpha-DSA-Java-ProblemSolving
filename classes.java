@@ -1,5 +1,5 @@
-import java.util.Scanner;
 
+/*  
 public class classes
 {
        public static void main(String args[])
@@ -29,3 +29,5 @@ public class classes
 
        }
 }
+
+*/
