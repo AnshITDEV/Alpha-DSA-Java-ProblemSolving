@@ -6,6 +6,13 @@
        "configurations": [
               {
                      "type": "java",
+                     "name": "LinkdedListDemo",
+                     "request": "launch",
+                     "mainClass": "LinkdedListDemo",
+                     "projectName": ".vscode_3e7d9730"
+              },
+              {
+                     "type": "java",
                      "name": "Recursion",
                      "request": "launch",
                      "mainClass": "Recursion",

@@ -1431,6 +1431,8 @@ public class LinkedList {
 */
 
 
+/* 
+Java Collection Framework-LinkedList
 
 import java.util.LinkedList;
 
@@ -1455,6 +1457,373 @@ public class LinkedListDemo {
        }
 
 }
+
+*/
+
+
+
+
+/*
+Merge Sort on LinkedList using JCF
+
+TC:O(n log n)
+SC:O(n)
+
+
+import java.util.LinkedList;
+
+public class LinkedListDemo {
+
+       public static LinkedList <Integer> mergeSort (LinkedList <Integer> ll) {
+
+              if (ll.size() <= 1) {
+                     return ll;
+              }
+
+              int mid = ll.size() / 2;
+
+              LinkedList <Integer> left = new LinkedList <>();
+              LinkedList <Integer> right = new LinkedList <>();
+
+              for (int i = 0; i < mid; i++) {
+                     left.add(ll.get(i));
+              }
+
+              for (int i = mid; i < ll.size(); i++) {
+                     right.add(ll.get(i));
+              }
+
+              left = mergeSort(left);
+              right = mergeSort(right);
+
+              return merge (left, right);
+       }
+
+       public static LinkedList<Integer> merge (LinkedList<Integer> left, LinkedList<Integer> right) {
+
+              LinkedList <Integer> result = new LinkedList <>();
+
+              int i = 0;
+              int j = 0;
+
+              while (i < left.size() && j < right.size()) {
+
+                     if(left.get(i) < right.get(j)) {
+                            result.add(left.get(i));
+                            i++;
+                     }
+                     else {
+                            result.add(right.get(j));
+                            j++;
+                     }
+              }
+
+              while (i < left.size()) {
+                     result.add(left.get(i));
+                     i++;
+              }
+
+              while (j < right.size()) {
+                     result.add(right.get(j));
+                     j++;
+              }
+
+              return result;
+       }
+
+
+
+       public static void main(String[] args) {
+
+              LinkedList<Integer> ll = new LinkedList<>();
+
+              ll.addFirst(1);
+              ll.addFirst(2);
+              ll.addFirst(3);
+              ll.addFirst(4);
+              ll.addFirst(5);
+
+              System.out.println("Original List:");
+              System.out.println(ll);
+
+              ll = mergeSort(ll);
+
+              System.out.println("Sorted List:");
+              System.out.println(ll);
+       }
+}
+
+ */
+
+
+/*  
+
+Convert a Linked List into Zig-Zag Form.
+TC: N
+SC: 1
+
+public class LinkedListDemo {
+
+       // Node Class
+       public static class Node {
+              int data;
+              Node next;
+
+              public Node(int data) {
+                     this.data = data;
+                     this.next = null;
+              }
+       }
+
+       // Head and Tail
+       public static Node head;
+       public static Node tail;
+
+       // Add at End
+       public void addLast(int data) {
+
+              Node newNode = new Node(data);
+
+              if (head == null) {
+                     head = tail = newNode;
+                     return;
+              }
+
+              tail.next = newNode;
+              tail = newNode;
+       }
+
+       // Print Linked List
+       public void print() {
+
+              if (head == null) {
+                     System.out.println("LL is empty");
+                     return;
+              }
+
+              Node temp = head;
+
+              while (temp != null) {
+                     System.out.print(temp.data + " -> ");
+                     temp = temp.next;
+              }
+
+              System.out.println("null");
+       }
+
+       // Zig-Zag Linked List
+       public void zigZag () {
+
+              //find Mid
+              Node slow = head;
+              Node fast = head.next;
+
+              while (fast != null && fast.next != null) {
+                     slow = slow.next;
+                     fast = fast.next.next;
+              }
+
+              Node mid = slow;
+
+              //Reverse the second half 
+              Node curr = mid.next;
+              mid.next = null;
+
+              Node prev = null;
+              Node next;
+
+              while (curr != null) {
+                     next = curr.next;
+                     curr.next = prev;
+                     prev = curr;
+                     curr = next;
+              }
+
+              //zigZag merge using left and right
+
+              Node Left = head;
+              Node Right = prev;
+
+              Node nextL;
+              Node nextR;
+
+              while (Left != null && Right != null) {
+                     nextL = Left.next;
+                     nextR = Right.next;
+
+                     Left.next = Right;
+                     Right.next = nextL;
+
+                     Left = nextL;
+                     Right = nextR;
+              }
+       }
+
+       // Main Method
+       public static void main(String[] args) {
+
+              LinkedListDemo ll = new LinkedListDemo();
+
+              ll.addLast(1);
+              ll.addLast(2);
+              ll.addLast(3);
+              ll.addLast(4);
+              ll.addLast(5);
+              ll.addLast(6);
+
+              System.out.println("Original Linked List:");
+              ll.print();
+
+              ll.zigZag();
+
+              System.out.println("Zig-Zag Linked List:");
+              ll.print();
+       }
+}
+
+*/
+
+/* 
+
+Implement a Doubly Linked List with addFirst(), print(), and removeFirst() 
+& Reverse a Doubly Linked List (DLL)
+
+| Operation     | Time Complexity |
+| ------------- | --------------- |
+| addFirst()    | O(1)            |
+| removeFirst() | O(1)            |
+| print()       | O(n)            |
+| reverse()     | O(n)            |
+
+Space Complexity
+O(1)
+*/
+
+
+public class DoubleLL {
+
+       // Node Class
+       public class Node {
+              int data;
+              Node next;
+              Node prev;
+
+
+              public Node(int data) {
+                     this.data = data;
+                     this.next = null;
+                     this.prev = null;
+              }
+       }
+
+       public static Node head;
+       public static Node tail;
+       public static int size;
+
+       // Add First
+       public void addFirst(int data) {
+              Node newNode = new Node(data);
+
+              if (head == null) {
+                     head = tail = newNode;
+                     size++;
+                     return;
+              }
+
+              newNode.next = head;
+              head.prev = newNode;
+              head = newNode;
+              size++;
+       }
+
+
+       // Print DLL
+       public void print() {
+
+              Node temp = head;
+
+              if (temp == null) {
+                     System.out.println("Linked List is empty");
+                     return;
+              }
+
+              while (temp != null) {
+                     System.out.print(temp.data+"<->");
+                     temp = temp.next;
+              }
+
+              System.out.println("null");
+       }
+
+       // Remove First
+       public int removeFirst() {
+
+              if(head == null) {
+                     System.out.println("Linked List is empty");
+                     return Integer.MIN_VALUE;
+              }
+
+              if(size == 1) {
+                     int val = head.data;
+                     head = tail = null;
+                     size = 0;
+                     return val;
+              }
+
+              int val = head.data;
+
+              head = head.next;
+              head.prev = null;
+              size--;
+              return val;
+       }
+
+       public void reverse () {
+              
+              Node curr = head;
+              Node prev = null;
+              Node next;
+
+              while (curr != null) {
+
+                     next = curr.next;
+
+                     curr.next = prev;
+                     curr.prev = next;
+
+                     prev = curr;
+                     curr = next;
+              }
+
+              head = prev;  
+       }
+
+       // Main Method
+       public static void main(String args[]) {
+
+              DoubleLL dll = new DoubleLL();
+
+              dll.addFirst(3);
+              dll.addFirst(2);
+              dll.addFirst(1);
+
+              dll.print();
+              System.out.println("Size = " + dll.size);
+
+              dll.reverse();
+              dll.print();
+
+              dll.removeFirst();
+              dll.print();
+
+              System.out.println("Size = " + dll.size);
+
+              
+       }
+}
+
+
+
 
 
 
