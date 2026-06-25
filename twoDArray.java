@@ -1,258 +1,282 @@
-// Search a key by scanning every element in a sorted 2D matrix (BRUTE FORCE)
-// TC: O(n × m)
+/* 
+
+
+## 2D Arrays - Index
+
+| Sr. No. | Program                                    | Time Complexity | Space Complexity |
+| :-----: | ------------------------------------------ | :-------------: | :--------------: |
+|    1    | Matrix Input & Output (Basic Traversal)    |   **O(N × M)**  |     **O(1)**     |
+|    2    | Search a Key in 2D Matrix (Brute Force)    |   **O(N × M)**  |     **O(1)**     |
+|    3    | Spiral Matrix Traversal                    |   **O(N × M)**  |     **O(1)**     |
+|    4    | Diagonal Sum (Optimized)                   |     **O(N)**    |     **O(1)**     |
+|    5    | Staircase Search (Search in Sorted Matrix) |   **O(N + M)**  |     **O(1)**     |
+
+---
+
+### Complexity Summary
+
+| Complexity     | Programs                                                                                |
+| -------------- | --------------------------------------------------------------------------------------- |
+| **O(N × M)**   | Matrix Input & Output, Search a Key in 2D Matrix (Brute Force), Spiral Matrix Traversal |
+| **O(N)**       | Diagonal Sum (Optimized)                                                                |
+| **O(N + M)**   | Staircase Search (Search in Sorted Matrix)                                              |
+| **O(1) Space** | All Programs                                                                            |
+
+
+// ------------------------------------------------------------
+// Matrix Input & Output (Basic Traversal)
+//
+// TC: O(N × M)
+// Reason: Every element of the matrix is visited once for input and once for output.
+//
 // SC: O(1)
+// Reason: No extra space is used apart from the given matrix.
+// ------------------------------------------------------------
 
-// public class twoDArray
-// {
-//        public static boolean brute(int matrix[][],int key)
-//        {
-//               for(int i=0; i<matrix.length; i++)
-//               {
-//                      for(int j=0; j<matrix[0].length; j++)
-//                      {
-//                             if(matrix[i][j] == key)
-//                             {
-//                                    System.out.println("Key found at:"+"("+i+","+j+")");
-//                                    return true;
-//                             }
-//                      }
-//               }
-//               return false;
-//        }
+import java.util.Scanner;
 
-//        public static void main(String[] args)
-//        {
-//               int matrix[][] =
-//               {
-//                      {10,20,30,40},
-//                      {15,25,35,45},
-//                      {16,26,36,46},
-//                      {17,27,37,47}
-//               };
+public class twoDArray {
 
-//               int key = 27;
-//               System.out.println(brute(matrix,key));
-//        }
-// }
+       public static void main(String args[]) {
 
+              int matrix[][] = new int[3][3];
 
+              Scanner sc = new Scanner(System.in);
 
+              int rows = matrix.length;
+              int cols = matrix[0].length;
 
+              // Input
+              for (int i = 0; i < rows; i++) {
 
+                     for (int j = 0; j < cols; j++) {
+                            matrix[i][j] = sc.nextInt();
+                     }
+              }
 
+              // Output
+              for (int i = 0; i < rows; i++) {
 
+                     for (int j = 0; j < cols; j++) {
+                            System.out.print(matrix[i][j] + " ");
+                     }
 
-// 2D Arrays | Staircase Search | Search in Sorted Matrix (OPTIMIZED)
-// TC: O(n + m) 
+                     System.out.println();
+              }
+
+              sc.close();
+       }
+}
+
+// ------------------------------------------------------------
+// Search a Key in 2D Matrix (Brute Force)
+//
+// TC: O(N × M)
+// Reason: Every element may be visited once in the worst case.
+//
 // SC: O(1)
+// Reason: Uses only constant extra variables.
+// ------------------------------------------------------------
 
+public class twoDArray {
 
-// public class twoDArray 
-// {
-//        public static boolean staircaseSearch(int matrix[][], int key)
-//        {
-//               int r = 0;
-//               int c = matrix[0].length - 1;
+       public static boolean brute(int matrix[][], int key) {
 
-//               while(r < matrix.length && c >= 0)
-//               {
-//                      if(matrix[r][c] == key)
-//                      {
-//                             System.out.println("("+r+","+c+")");
-//                             return true;
-//                      }else 
-//                      if(key < matrix[r][c])
-//                      {
-//                             c--;
-//                      }
-//                      else
-//                      {
-//                             r++;
-//                      }
-//               }
-//               System.out.println("key not found");
-//               return false;
-//        }
+              for (int i = 0; i < matrix.length; i++) {
 
-//        public static void main(String[] args)
-//        {
-//               int matrix[][] =
-//               {
-//                      {10, 20, 30, 40},
-//                      {15, 25, 35, 45},
-//                      {27, 29, 37, 48},
-//                      {32, 33, 39, 50}
-//               };
+                     for (int j = 0; j < matrix[0].length; j++) {
 
-//               int key = 33;
-//               staircaseSearch(matrix,key);
-//        }
-// }
+                            if (matrix[i][j] == key) {
 
+                                   System.out.println("Key Found at (" + i + "," + j + ")");
+                                   return true;
+                            }
+                     }
+              }
 
+              return false;
+       }
 
-// 2D Arrays | Matrix Input & Output | Basic Traversal
-//  O(n × m)
+       public static void main(String args[]) {
 
-// import java.util.Scanner;
+              int matrix[][] = {
+                            { 10, 20, 30, 40 },
+                            { 15, 25, 35, 45 },
+                            { 16, 26, 36, 46 },
+                            { 17, 27, 37, 47 }
+              };
 
-// public class twoDArray
-// {
+              int key = 27;
 
-//        public static void main(String args[])
-//        {
-              
-//               int matrix[][] = new int[3][3];
+              System.out.println(brute(matrix, key));
+       }
+}
 
-//               Scanner sc = new Scanner(System.in);
+// ------------------------------------------------------------
+// Spiral Matrix Traversal
+//
+// TC: O(N × M)
+// Reason: Every element is printed exactly once.
+//
+// SC: O(1)
+// Reason: No extra array or data structure is used.
+// ------------------------------------------------------------
 
-//               int r = matrix.length;
-//               int c = matrix[0].length;
+public class twoDArray {
 
+       public static void printSpiral(int matrix[][]) {
 
-//               for(int i = 0; i < r; i++)
-//               {
-//                      for(int j = 0; j < c; j++)
-//                      {
-//                             matrix[i][j] = sc.nextInt();
+              int startRow = 0;
+              int startCol = 0;
+              int endRow = matrix.length - 1;
+              int endCol = matrix[0].length - 1;
 
-//                      }
-//               }
-              
-//               for(int i = 0; i < r; i++)
-//               {
-//                      for(int j = 0; j < c; j++)
-//                      {
-//                             System.out.print(matrix[i][j]+" ");
-//                      }
-//                      System.out.println();
-//               }
-//               sc.close();
-//        }
-// }
+              while (startRow <= endRow && startCol <= endCol) {
 
+                     // Top
+                     for (int j = startCol; j <= endCol; j++) {
+                            System.out.print(matrix[startRow][j] + " ");
+                     }
 
+                     // Right
+                     for (int i = startRow + 1; i <= endRow; i++) {
+                            System.out.print(matrix[i][endCol] + " ");
+                     }
 
+                     // Bottom
+                     if (startRow < endRow) {
 
+                            for (int j = endCol - 1; j >= startCol; j--) {
+                                   System.out.print(matrix[endRow][j] + " ");
+                            }
+                     }
 
+                     // Left
+                     if (startCol < endCol) {
 
-// 2D Arrays | Spiral Matrix Traversal | Boundary Method
-// Time Complexity: O(rows × cols)
-// Space Complexity: O(1) (no extra array)
+                            for (int i = endRow - 1; i >= startRow + 1; i--) {
+                                   System.out.print(matrix[i][startCol] + " ");
+                            }
+                     }
 
-// public class twoDArray
-// {
-//        public static void printSpiral(int matrix[][])
-//        {
-//               int startrow = 0;
-//               int startcol = 0;
-//               int endrow = matrix.length-1;
-//               int endcol = matrix[0].length-1;
+                     startRow++;
+                     startCol++;
+                     endRow--;
+                     endCol--;
+              }
+       }
 
-//               while(startrow <= endrow && startcol <= endcol)
-//               {
-//                      for(int j = startcol; j <= endcol; j++)
-//                      {
-//                             System.out.print(matrix[startrow][j]+" ");
-//                      }
+       public static void main(String args[]) {
 
-//                      for(int i = startrow+1; i <= endrow; i++)
-//                      {
-//                             System.out.print(matrix[i][endcol]+" ");
-//                      }
+              int matrix[][] = {
+                            { 1, 2, 3, 4 },
+                            { 5, 6, 7, 8 },
+                            { 9, 10, 11, 12 },
+                            { 13, 14, 15, 16 }
+              };
 
-//                      if(startrow < endrow)
-//                      {
-//                             for(int j = endcol-1; j >= startcol; j--)
-//                             {
-//                             System.out.print(matrix[endrow][j]+" ");
-//                             }
-//                      }
-
-//                      if(startcol < endcol)
-//                      {
-//                             for(int i = endrow-1; i >= startrow+1; i--)
-//                             {
-//                             System.out.print(matrix[i][startcol]+" ");
-//                             }
-//                      }
-
-//                      startrow++;
-//                      startcol++;
-//                      endrow--;
-//                      endcol--;
-//               }
-//        }
+              printSpiral(matrix);
+       }
+}
 
 
 
+// ------------------------------------------------------------
+// Diagonal Sum (Optimized)
+//
+// TC: O(N)
+// Reason: Traverses only the primary and secondary diagonals once.
+//
+// SC: O(1)
+// Reason: Uses only a constant number of variables.
+// ------------------------------------------------------------
 
-//        public static void main(String[] args)
-//        {
-//               int matrix[][] =
-//               {
-//               {1,  2,  3,  4},
-//               {5,  6,  7,  8},
-//               {9, 10, 11, 12},
-//               {13,14, 15,16}
-//               };
+public class twoDArray {
 
-//               printSpiral(matrix);
-//        }
-// }
+       public static int diagonalSum(int matrix[][]) {
 
+              int sum = 0;
+              int n = matrix.length;
 
+              for (int i = 0; i < n; i++) {
 
-// 2D Arrays | Diagonal Traversal | Diagonal Sum (Optimized)
-// ⏱️ Time Complexity O(n) 
-// 📦 Space Complexity O(1) 
+                     // Primary Diagonal
+                     sum += matrix[i][i];
 
-// public class twoDArray
-// {
+                     // Secondary Diagonal
+                     if (i != n - 1 - i) {
+                            sum += matrix[i][n - 1 - i];
+                     }
+              }
 
-//        public static int diagonalSum(int matrix[][])
-//        {
-//               int sum = 0;
-//               int n = matrix.length;
+              return sum;
+       }
 
-//               for(int i = 0; i < n; i++)
-//               {
-//                      sum = sum + matrix[i][i];
+       public static void main(String args[]) {
 
+              int matrix[][] = {
+                            { 1, 2, 3, 4 },
+                            { 5, 6, 7, 8 },
+                            { 9, 10, 11, 12 },
+                            { 13, 14, 15, 16 }
+              };
 
-//                      if(i != n-1-i)
-//                      {
-//                      sum = sum + matrix[i][n-1-i];
-//                      }
-//               }
-//               return sum;
-              
-//        }
+              System.out.println(diagonalSum(matrix));
+       }
+}
 
-//        public static void main(String[] args) {
-//               int matrix[][] = {
-//                             { 1, 2, 3, 4 },
-//                             { 5, 6, 7, 8 },
-//                             { 9, 10, 11, 12 },
-//                             { 13, 14, 15, 16 }
-//               };
+// ------------------------------------------------------------
+// Staircase Search (Search in Sorted Matrix)
+//
+// TC: O(N + M)
+// Reason: In each step, either one row or one column is eliminated.
+//
+// SC: O(1)
+// Reason: Uses only constant extra variables.
+// ------------------------------------------------------------
 
-//               System.out.println(diagonalSum(matrix));
-//        }
-// }
+public class twoDArray {
 
+       public static boolean staircaseSearch(int matrix[][], int key) {
 
+              int row = 0;
+              int col = matrix[0].length - 1;
 
+              while (row < matrix.length && col >= 0) {
 
+                     if (matrix[row][col] == key) {
 
+                            System.out.println("Key Found at (" + row + "," + col + ")");
+                            return true;
+                     } else if (key < matrix[row][col]) {
+                            col--;
+                     } else {
+                            row++;
+                     }
+              }
 
+              System.out.println("Key Not Found");
+              return false;
+       }
+
+       public static void main(String args[]) {
+
+              int matrix[][] = {
+                            { 10, 20, 30, 40 },
+                            { 15, 25, 35, 45 },
+                            { 27, 29, 37, 48 },
+                            { 32, 33, 39, 50 }
+              };
+
+              int key = 33;
+
+              staircaseSearch(matrix, key);
+       }
+}
 
 
 
 
-
-
-
-
+*/
 
 
