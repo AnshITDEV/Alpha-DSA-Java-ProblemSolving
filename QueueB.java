@@ -1,20 +1,58 @@
-/* 
-Queue using Array (Static Array Implementation)
+/*
 
-TC:O(1)for add(),peek(),isEmpty()
-TC:O(n)for remove()
 
-SC:O(n)
+# Queue - Index
 
+| Sr. No. | Program                                     |                 Time Complexity                 | Space Complexity |
+| :-----: | ------------------------------------------- | :---------------------------------------------: | :--------------: |
+|    1    | Queue using Static Array                    | **Add:** O(1), **Remove:** O(N), **Peek:** O(1) |     **O(N)**     |
+|    2    | Circular Queue using Array                  |            **O(1)** (All Operations)            |     **O(N)**     |
+|    3    | Queue using Linked List                     |            **O(1)** (All Operations)            |     **O(N)**     |
+|    4    | Queue using Java Collection Framework (JCF) |            **O(1)** (All Operations)            |     **O(N)**     |
+|    5    | Queue using 2 Stacks                        | **Add:** O(N), **Remove:** O(1), **Peek:** O(1) |     **O(N)**     |
+|    6    | Stack using 2 Queues                        |  **Push:** O(1), **Pop:** O(N), **Peek:** O(N)  |     **O(N)**     |
+|    7    | First Non-Repeating Character in a Stream   |                     **O(N)**                    |     **O(N)**     |
+|    8    | Interleave Two Halves of a Queue            |                     **O(N)**                    |     **O(N)**     |
+|    9    | Reverse Queue using Stack                   |                     **O(N)**                    |     **O(N)**     |
+|    10   | Deque (Basic Operations)                    |            **O(1)** (All Operations)            |     **O(N)**     |
+|    11   | Stack using Deque                           |            **O(1)** (All Operations)            |     **O(N)**     |
+|    12   | Queue using Deque                           |            **O(1)** (All Operations)            |     **O(N)**     |
+
+---
+
+# Complexity Summary
+
+| Complexity                             | Programs                                                                                                                                                                                                                                                                                                                                       |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **O(1)**                               | Circular Queue using Array, Queue using Linked List, Queue using Java Collection Framework (JCF), Deque (Basic Operations), Stack using Deque, Queue using Deque                                                                                                                                                                               |
+| **O(1) Add / O(N) Remove**             | Queue using Static Array                                                                                                                                                                                                                                                                                                                       |
+| **O(N) Add / O(1) Remove / O(1) Peek** | Queue using 2 Stacks                                                                                                                                                                                                                                                                                                                           |
+| **O(1) Push / O(N) Pop / O(N) Peek**   | Stack using 2 Queues                                                                                                                                                                                                                                                                                                                           |
+| **O(N)**                               | First Non-Repeating Character in a Stream, Interleave Two Halves of a Queue, Reverse Queue using Stack                                                                                                                                                                                                                                         |
+| **O(N) Space**                         | Queue using Static Array, Circular Queue using Array, Queue using Linked List, Queue using Java Collection Framework (JCF), Queue using 2 Stacks, Stack using 2 Queues, First Non-Repeating Character in a Stream, Interleave Two Halves of a Queue, Reverse Queue using Stack, Deque (Basic Operations), Stack using Deque, Queue using Deque |
+
+
+
+// ------------------------------------------------------------
+// Queue | Static Array Implementation
+//
+// TC: O(1) -> add(), peek(), isEmpty()
+// TC: O(N) -> remove()
+// Reason: remove() shifts all remaining elements one position left.
+//
+// SC: O(N)
+// Reason: Array stores N elements.
+// ------------------------------------------------------------
 
 public class QueueB {
 
        static class Queue {
-              static int arr[];;
+
+              static int arr[];
               static int rear;
               static int size;
 
-              Queue (int n) {
+              Queue(int n) {
                      arr = new int[n];
                      size = n;
                      rear = -1;
@@ -24,10 +62,10 @@ public class QueueB {
                      return rear == -1;
               }
 
-              public static void add (int data) {
-                     
-                     if(rear == size-1) {
-                            System.out.println("Queue is full");
+              public static void add(int data) {
+
+                     if(rear == size - 1) {
+                            System.out.println("Queue is Full");
                             return;
                      }
 
@@ -35,26 +73,29 @@ public class QueueB {
                      arr[rear] = data;
               }
 
-              public static int remove () {
+              public static int remove() {
+
                      if(isEmpty()) {
-                            System.out.println("Empty nothing to remove");
+                            System.out.println("Queue is Empty");
                             return -1;
                      }
 
                      int front = arr[0];
 
-                     for (int i=0; i<rear; i++) {
-                            arr[i] = arr[i+1];
+                     for(int i = 0; i < rear; i++) {
+                            arr[i] = arr[i + 1];
                      }
+
                      rear--;
-              
+
                      return front;
               }
 
               public static int peek() {
-                     if (isEmpty()) {
-                            System.out.println("Queue is empty");
-                            return -1; 
+
+                     if(isEmpty()) {
+                            System.out.println("Queue is Empty");
+                            return -1;
                      }
 
                      return arr[0];
@@ -69,32 +110,34 @@ public class QueueB {
               q.add(2);
               q.add(3);
 
-              while (!q.isEmpty()) {
+              while(!q.isEmpty()) {
                      System.out.println(q.peek());
                      q.remove();
               }
        }
 }
 
-*/
 
-
-/* 
-Circular Queue using Array (Optimized Queue Implementation)
-
-TC:O(1) for add(),remove(),peek()
-SC:O(n)
+// ------------------------------------------------------------
+// Queue | Circular Queue using Array
+//
+// TC: O(1) -> add(), remove(), peek(), isEmpty()
+// Reason: Front and rear move circularly using modulo operation.
+//
+// SC: O(N)
+// Reason: Array stores N elements.
+// ------------------------------------------------------------
 
 public class QueueB {
 
        static class Queue {
 
-              static int size;
+              static int arr[];
               static int front;
               static int rear;
-              static int arr[];
+              static int size;
 
-              Queue (int n) {
+              Queue(int n) {
                      arr = new int[n];
                      size = n;
                      front = -1;
@@ -106,44 +149,46 @@ public class QueueB {
               }
 
               public static boolean isFull() {
-                     return (rear+1)%size == front;
+                     return (rear + 1) % size == front;
               }
 
-              public static void add (int data) {
-                     if (isFull()) {
-                            System.out.println("full");
+              public static void add(int data) {
+
+                     if(isFull()) {
+                            System.out.println("Queue is Full");
                             return;
                      }
 
-                     if (front == -1) {
+                     if(front == -1) {
                             front = 0;
                      }
 
-                     rear = (rear+1)%size;
+                     rear = (rear + 1) % size;
                      arr[rear] = data;
               }
 
-              public static int remove () {
-                     
+              public static int remove() {
+
                      if(isEmpty()) {
-                            System.out.println("empty");
+                            System.out.println("Queue is Empty");
                             return -1;
                      }
 
                      int result = arr[front];
 
-                     if (rear == front) {
-                            rear = front = -1;
-                     } else {
-                            front = (front+1)%size;
+                     if(front == rear) {
+                            front = rear = -1;
+                     }
+                     else {
+                            front = (front + 1) % size;
                      }
 
                      return result;
               }
 
-              public static int peek () {
+              public static int peek() {
 
-                     if (isEmpty()) {
+                     if(isEmpty()) {
                             System.out.println("Queue is Empty");
                             return -1;
                      }
@@ -152,9 +197,7 @@ public class QueueB {
               }
        }
 
-       
-
-       public static void main (String args[]) {
+       public static void main(String args[]) {
 
               Queue q = new Queue(3);
 
@@ -166,7 +209,7 @@ public class QueueB {
 
               q.add(4);
 
-              while (!q.isEmpty()) {
+              while(!q.isEmpty()) {
                      System.out.println(q.peek());
                      q.remove();
               }
@@ -174,19 +217,20 @@ public class QueueB {
 }
 
 
-*/
-
-
-/*
-
-Queue using Linked List
-
-TC: O(1) for add(), remove(), peek()
-SC: O(n)
+// ------------------------------------------------------------
+// Queue | Linked List Implementation
+//
+// TC: O(1) -> add(), remove(), peek(), isEmpty()
+// Reason: Head and tail pointers allow constant time operations.
+//
+// SC: O(N)
+// Reason: Linked List stores N nodes.
+// ------------------------------------------------------------
 
 public class QueueB {
 
        static class Node {
+
               int data;
               Node next;
 
@@ -197,6 +241,7 @@ public class QueueB {
        }
 
        static class Queue {
+
               static Node head = null;
               static Node tail = null;
 
@@ -205,9 +250,10 @@ public class QueueB {
               }
 
               public static void add(int data) {
+
                      Node newNode = new Node(data);
 
-                     if (head == null) {
+                     if(head == null) {
                             head = tail = newNode;
                             return;
                      }
@@ -218,17 +264,17 @@ public class QueueB {
 
               public static int remove() {
 
-                     if (isEmpty()) {
-                            System.out.println("Empty Queue");
+                     if(isEmpty()) {
+                            System.out.println("Queue is Empty");
                             return -1;
                      }
 
                      int front = head.data;
 
-                     // single node case
-                     if (head == tail) {
+                     if(head == tail) {
                             head = tail = null;
-                     } else {
+                     }
+                     else {
                             head = head.next;
                      }
 
@@ -237,8 +283,8 @@ public class QueueB {
 
               public static int peek() {
 
-                     if (isEmpty()) {
-                            System.out.println("Empty Queue");
+                     if(isEmpty()) {
+                            System.out.println("Queue is Empty");
                             return -1;
                      }
 
@@ -254,54 +300,55 @@ public class QueueB {
               q.add(2);
               q.add(3);
 
-              while (!q.isEmpty()) {
+              while(!q.isEmpty()) {
                      System.out.println(q.peek());
                      q.remove();
               }
        }
 }
 
-*/
 
-/*
 
-Queue using Java Collections Framework (JCF)
+// ------------------------------------------------------------
+// Queue | Java Collection Framework (JCF)
+//
+// TC: O(1) -> add(), remove(), peek(), isEmpty()
+// Reason: LinkedList implementation provides constant-time queue operations.
+//
+// SC: O(N)
+// Reason: Queue stores N elements.
+// ------------------------------------------------------------
 
-TC: O(1) for add(), remove(), peek()
-SC: O(n)
+import java.util.*;
 
-       import java.util.*;
-
-       public class QueueB {
+public class QueueB {
 
        public static void main(String args[]) {
 
               Queue<Integer> q = new LinkedList<>();
-              // Queue<Integer> q = new ArrayDeque<>();
 
               q.add(1);
               q.add(2);
               q.add(3);
 
-              while (!q.isEmpty()) {
-              System.out.println(q.peek());
-              q.remove();
+              while(!q.isEmpty()) {
+                     System.out.println(q.peek());
+                     q.remove();
               }
        }
-       }
+}
 
 
- */
-
-
-/* 
-Queue using 2 Stacks (Costly Add Approach)
-
-TC: O(n) add()
-TC: O(1) remove(), peek()
-
-SC: O(n)
-
+// ------------------------------------------------------------
+// Queue | Implementation using 2 Stacks
+//
+// TC: O(N) -> add()
+// TC: O(1) -> remove(), peek(), isEmpty()
+// Reason: add() transfers all elements between the two stacks.
+//
+// SC: O(N)
+// Reason: Two stacks together store N elements.
+// ------------------------------------------------------------
 
 import java.util.*;
 
@@ -316,33 +363,33 @@ public class QueueB {
                      return s1.isEmpty();
               }
 
-              public static void add (int data) {
+              public static void add(int data) {
 
-                     while (!s1.isEmpty()) {
+                     while(!s1.isEmpty()) {
                             s2.push(s1.pop());
                      }
 
                      s1.push(data);
 
-                     while (!s2.isEmpty()) {
+                     while(!s2.isEmpty()) {
                             s1.push(s2.pop());
                      }
               }
 
-              public static int remove () {
+              public static int remove() {
 
-                     if (s1.isEmpty()) {
-                            System.out.println("Empty queue");
+                     if(isEmpty()) {
+                            System.out.println("Queue is Empty");
                             return -1;
                      }
 
                      return s1.pop();
               }
 
-              public static int peek () {
+              public static int peek() {
 
-                     if (s1.isEmpty()) {
-                            System.out.println("Empty queue");
+                     if(isEmpty()) {
+                            System.out.println("Queue is Empty");
                             return -1;
                      }
 
@@ -358,27 +405,24 @@ public class QueueB {
               q.add(2);
               q.add(3);
 
-              while (!q.isEmpty()) {
+              while(!q.isEmpty()) {
                      System.out.println(q.peek());
                      q.remove();
               }
        }
 }
 
-*/
 
-
-/*
-
-Stack using 2 Queues (Costly Pop Approach)
-
-TC: O(1) push()
-TC: O(n) pop(), peek()
-
-SC: O(n)
-
-
-
+// ------------------------------------------------------------
+// Stack | Implementation using 2 Queues
+//
+// TC: O(1) -> push()
+// TC: O(N) -> pop(), peek()
+// Reason: pop() and peek() transfer elements between two queues.
+//
+// SC: O(N)
+// Reason: Two queues together store N elements.
+// ------------------------------------------------------------
 
 import java.util.*;
 
@@ -395,74 +439,73 @@ public class QueueB {
 
               public static void push(int data) {
 
-                     if (!q1.isEmpty()) {
+                     if(!q1.isEmpty()) {
                             q1.add(data);
                      }
-                     else if (!q2.isEmpty()) {
+                     else {
                             q2.add(data);
-                     } else {
-                            q1.add(data);
                      }
               }
 
-              public static int pop () {
+              public static int pop() {
 
-                     if (isEmpty()) {
-                            System.out.println("Empty");
+                     if(isEmpty()) {
+                            System.out.println("Stack is Empty");
                             return -1;
                      }
 
                      int top = -1;
 
-                     if (!q1.isEmpty()) {
-                            while(!q1.isEmpty()) {
-                                   top = q1.remove();
-                                   if (q1.isEmpty()) {
-                                          break;
-                                   }
-                                   q2.add(top);
+                     if(!q1.isEmpty()) {
+
+                            while(q1.size() > 1) {
+                                   q2.add(q1.remove());
                             }
-                     } else {
-                            while (!q2.isEmpty()) {
-                                   top = q2.remove();
-                                   if (q2.isEmpty()) {
-                                          break;
-                                   }
-                                   q1.add(top);
-                            }
+
+                            top = q1.remove();
                      }
+                     else {
+
+                            while(q2.size() > 1) {
+                                   q1.add(q2.remove());
+                            }
+
+                            top = q2.remove();
+                     }
+
                      return top;
               }
 
               public static int peek() {
 
-                     if (isEmpty()) {
-                            System.out.println("Empty");
+                     if(isEmpty()) {
+                            System.out.println("Stack is Empty");
                             return -1;
                      }
 
                      int top = -1;
 
-                     if (!q1.isEmpty()) {
+                     if(!q1.isEmpty()) {
+
                             while(!q1.isEmpty()) {
+
                                    top = q1.remove();
+
                                    q2.add(top);
-                                   if (q1.isEmpty()) {
-                                          break;
-                                   }
-                            }
-                     } else {
-                            while (!q2.isEmpty()) {
-                                   top = q2.remove();
-                                   q1.add(top);
-                                   if (q2.isEmpty()) {
-                                          break;
-                                   }
                             }
                      }
+                     else {
+
+                            while(!q2.isEmpty()) {
+
+                                   top = q2.remove();
+
+                                   q1.add(top);
+                            }
+                     }
+
                      return top;
               }
-
        }
 
        public static void main(String args[]) {
@@ -473,7 +516,7 @@ public class QueueB {
               s.push(2);
               s.push(3);
 
-              while (!s.isEmpty()) {
+              while(!s.isEmpty()) {
                      System.out.println(s.peek());
                      s.pop();
               }
@@ -481,16 +524,16 @@ public class QueueB {
 }
 
 
- */
 
-
-/* 
-First Non-Repeating Character in a Stream using Queue
-
-TC: O(N) – each character enters and leaves queue at most once.
-SC: O(N) – queue + frequency array.
-
-
+// ------------------------------------------------------------
+// Queue | First Non-Repeating Character in a Stream
+//
+// TC: O(N)
+// Reason: Each character is added and removed from the queue at most once.
+//
+// SC: O(N)
+// Reason: Queue and frequency array store stream information.
+// ------------------------------------------------------------
 
 import java.util.*;
 
@@ -499,26 +542,27 @@ public class QueueB {
        public static void printNonRepeating(String str) {
 
               int freq[] = new int[26];
-              Queue<Character> q = new java.util.LinkedList<>();
+              Queue<Character> q = new LinkedList<>();
 
-              for (int i=0; i<str.length(); i++) {
+              for(int i = 0; i < str.length(); i++) {
 
                      char ch = str.charAt(i);
 
                      q.add(ch);
-                     freq[ch-'a']++;
+                     freq[ch - 'a']++;
 
-                     while (!q.isEmpty() && freq[q.peek()-'a'] > 1) {
+                     while(!q.isEmpty() && freq[q.peek() - 'a'] > 1) {
                             q.remove();
                      }
 
-                     if (q.isEmpty()) {
+                     if(q.isEmpty()) {
                             System.out.print("-1 ");
                      }
                      else {
                             System.out.print(q.peek() + " ");
                      }
               }
+
               System.out.println();
        }
 
@@ -530,18 +574,16 @@ public class QueueB {
        }
 }
 
-*/
 
-/* 
-Question: Interleave 2 Halves of a Queue (Even Length)
-
-TC: O(N)
-Reason: Every element is processed a constant number of times.
-
-SC: O(N/2) ≈ O(N)
-Reason: Extra queue stores half of the elements.
-
-
+// ------------------------------------------------------------
+// Queue | Interleave Two Halves of a Queue
+//
+// TC: O(N)
+// Reason: Every element is moved a constant number of times.
+//
+// SC: O(N)
+// Reason: Auxiliary queue stores half of the elements.
+// ------------------------------------------------------------
 
 import java.util.*;
 
@@ -549,14 +591,16 @@ public class QueueB {
 
        public static void interLeave(Queue<Integer> q) {
 
-              Queue<Integer> firstHalf = new java.util.LinkedList<Integer>();
+              Queue<Integer> firstHalf = new LinkedList<>();
+
               int size = q.size();
 
-              for(int i=0; i<size/2; i++) {
+              for(int i = 0; i < size / 2; i++) {
                      firstHalf.add(q.remove());
               }
 
               while(!firstHalf.isEmpty()) {
+
                      q.add(firstHalf.remove());
                      q.add(q.remove());
               }
@@ -564,54 +608,44 @@ public class QueueB {
 
        public static void main(String args[]) {
 
-              Queue<Integer> q = new java.util.LinkedList<Integer>();
+              Queue<Integer> q = new LinkedList<>();
 
-              q.add(1);
-              q.add(2);
-              q.add(3);
-              q.add(4);
-              q.add(5);
-              q.add(6);
-              q.add(7);
-              q.add(8);
-              q.add(9);
-              q.add(10);
+              for(int i = 1; i <= 10; i++) {
+                     q.add(i);
+              }
 
               interLeave(q);
 
-              while (!q.isEmpty()) {
+              while(!q.isEmpty()) {
                      System.out.print(q.remove() + " ");
               }
        }
 }
 
-*/
 
-/*
-Queue Reversal using Stack (Java)
-
-TC: O(N)
-Reason: Every element is pushed once and popped once.
-
-SC: O(N)
-Reason: Extra stack stores all N elements.
-
-
-
+// ------------------------------------------------------------
+// Queue | Reverse Queue using Stack
+//
+// TC: O(N)
+// Reason: Every element is pushed and popped exactly once.
+//
+// SC: O(N)
+// Reason: Stack stores all queue elements.
+// ------------------------------------------------------------
 
 import java.util.*;
 
 public class QueueB {
 
-       public static void reverse(Queue<Integer> q) {
+       public static void reverseQueue(Queue<Integer> q) {
 
               Stack<Integer> s = new Stack<>();
 
-              while (!q.isEmpty()) {
+              while(!q.isEmpty()) {
                      s.push(q.remove());
               }
 
-              while (!s.isEmpty()) {
+              while(!s.isEmpty()) {
                      q.add(s.pop());
               }
        }
@@ -626,23 +660,28 @@ public class QueueB {
               q.add(4);
               q.add(5);
 
-              reverse(q);
+              reverseQueue(q);
 
-              while (!q.isEmpty()) {
+              while(!q.isEmpty()) {
                      System.out.print(q.remove() + " ");
               }
        }
 }
 
- */
 
 
-/* 
-Deque (Double Ended Queue) in Java
-
-TC: O(1)
-SC: O(1)
-all operations
+// ------------------------------------------------------------
+// Deque | Basic Operations using Java Collection Framework
+//
+// TC: O(1) each operation (addFirst, addLast, removeFirst,
+// removeLast, getFirst, getLast)
+//
+// Reason: Deque supports insertion, deletion, and access from
+// both ends in constant time.
+//
+// SC: O(N)
+// Reason: Deque stores N elements.
+// ------------------------------------------------------------
 
 import java.util.*;
 
@@ -650,80 +689,91 @@ public class QueueB {
 
        public static void main(String args[]) {
 
-              Deque<Integer> d = new java.util.LinkedList<Integer>();
+              Deque<Integer> deque = new LinkedList<>();
 
-              d.addFirst(1);
-              d.addFirst(2);
+              deque.addFirst(2);
+              deque.addFirst(1);
 
-              System.out.println(d);
+              deque.addLast(3);
+              deque.addLast(4);
 
-              d.removeLast();
-              System.out.println(d);
+              System.out.println(deque);
 
-              System.out.println(d.getFirst());
+              System.out.println(deque.getFirst());
+              System.out.println(deque.getLast());
+
+              deque.removeFirst();
+              deque.removeLast();
+
+              System.out.println(deque);
        }
 }
 
-*/
 
-/*
-Implement Stack using Deque
-
-TC: O(1)
-SC: O(n)
-all three push pop peek
-
- 
-
+// ------------------------------------------------------------
+// Deque | Implement Stack using Deque
+//
+// TC: O(1) each operation (push, pop, peek, isEmpty)
+//
+// Reason: All stack operations are performed at the front
+// of the deque.
+//
+// SC: O(N)
+// Reason: Deque stores N elements.
+// ------------------------------------------------------------
 
 import java.util.*;
 
 public class QueueB {
 
-       static class stack {
+       static class Stack {
 
-              Deque<Integer> d = new java.util.LinkedList<Integer>();
+              Deque<Integer> deque = new LinkedList<>();
 
               public void push(int data) {
-                     d.addLast(data);
+                     deque.addFirst(data);
               }
 
               public int pop() {
-                     return d.removeLast();
+                     return deque.removeFirst();
               }
 
               public int peek() {
-                     return d.peekLast();
+                     return deque.getFirst();
+              }
+
+              public boolean isEmpty() {
+                     return deque.isEmpty();
               }
        }
 
        public static void main(String args[]) {
 
-              stack s = new stack();
+              Stack s = new Stack();
 
               s.push(1);
               s.push(2);
               s.push(3);
 
-              System.out.println("peek = " + s.peek());
-
-              System.out.println(s.pop());
-              System.out.println(s.pop());
-              System.out.println(s.pop());
+              while(!s.isEmpty()) {
+                     System.out.println(s.peek());
+                     s.pop();
+              }
        }
 }
 
 
-*/
-
-
-/*
-Implement Queue using Deque
-
-TC: O(1)
-SC: O(N)
-
-
+// ------------------------------------------------------------
+// Deque | Implement Queue using Deque
+//
+// TC: O(1) each operation (add, remove, peek, isEmpty)
+//
+// Reason: Queue operations are performed from opposite ends
+// of the deque.
+//
+// SC: O(N)
+// Reason: Deque stores N elements.
+// ------------------------------------------------------------
 
 import java.util.*;
 
@@ -733,19 +783,20 @@ public class QueueB {
 
               Deque<Integer> deque = new LinkedList<>();
 
-              // add
               public void add(int data) {
                      deque.addLast(data);
               }
 
-              // remove
               public int remove() {
                      return deque.removeFirst();
               }
 
-              // peek
               public int peek() {
                      return deque.getFirst();
+              }
+
+              public boolean isEmpty() {
+                     return deque.isEmpty();
               }
        }
 
@@ -757,11 +808,10 @@ public class QueueB {
               q.add(2);
               q.add(3);
 
-              System.out.println("peek = " + q.peek());
-
-              System.out.println(q.remove());
-              System.out.println(q.remove());
-              System.out.println(q.remove());
+              while(!q.isEmpty()) {
+                     System.out.println(q.peek());
+                     q.remove();
+              }
        }
 }
 

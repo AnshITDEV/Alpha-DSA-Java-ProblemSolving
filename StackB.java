@@ -1,47 +1,81 @@
-/* 
+/*
 
-Stack | Implementation using ArrayList
-TC: O(1) each operation push pop peek isEmpty
-SC: O(N)
+# Stack - Index
+
+| Sr. No. | Program                                     |     Time Complexity     | Space Complexity |
+| :-----: | ------------------------------------------- | :---------------------: | :--------------: |
+|    1    | Stack Implementation using ArrayList        | **O(1)** each operation |     **O(N)**     |
+|    2    | Stack Implementation using Linked List      | **O(1)** each operation |     **O(N)**     |
+|    3    | Stack using Java Collection Framework (JCF) | **O(1)** each operation |     **O(N)**     |
+|    4    | Push at Bottom using Recursion              |         **O(N)**        |     **O(N)**     |
+|    5    | Reverse String using Stack                  |         **O(N)**        |     **O(N)**     |
+|    6    | Reverse Stack using Recursion               |        **O(N²)**        |     **O(N)**     |
+|    7    | Stock Span Problem                          |         **O(N)**        |     **O(N)**     |
+|    8    | Next Greater Element                        |         **O(N)**        |     **O(N)**     |
+|    9    | Valid Parentheses                           |         **O(N)**        |     **O(N)**     |
+|    10   | Duplicate Parentheses                       |         **O(N)**        |     **O(N)**     |
+|    11   | Maximum Area in Histogram (NSL + NSR)       |         **O(N)**        |     **O(N)**     |
+
+---
+
+# Complexity Summary
+
+| Complexity     | Programs                                                                                                                                                                                                                                                                                                                                        |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **O(1)**       | Stack Implementation using ArrayList (push, pop, peek, isEmpty), Stack Implementation using Linked List (push, pop, peek, isEmpty), Stack using Java Collection Framework (JCF) (push, pop, peek, isEmpty)                                                                                                                                      |
+| **O(N)**       | Push at Bottom using Recursion, Reverse String using Stack, Stock Span Problem, Next Greater Element, Valid Parentheses, Duplicate Parentheses, Maximum Area in Histogram (NSL + NSR)                                                                                                                                                           |
+| **O(N²)**      | Reverse Stack using Recursion                                                                                                                                                                                                                                                                                                                   |
+| **O(N) Space** | Stack Implementation using ArrayList, Stack Implementation using Linked List, Stack using Java Collection Framework (JCF), Push at Bottom using Recursion, Reverse String using Stack, Reverse Stack using Recursion, Stock Span Problem, Next Greater Element, Valid Parentheses, Duplicate Parentheses, Maximum Area in Histogram (NSL + NSR) |
+
+
+
+
+// ------------------------------------------------------------
+// Stack | Implementation using ArrayList
+//
+// TC: O(1) each operation (push, pop, peek, isEmpty)
+// Reason: ArrayList performs end insertion, deletion and access in constant time.
+//
+// SC: O(N)
+// Reason: Stores N elements in the ArrayList.
+// ------------------------------------------------------------
 
 import java.util.ArrayList;
 
-public class StackB {     
-       
+public class StackB {
+
        static class Stack {
 
-              static ArrayList <Integer> list = new ArrayList<>();
+              static ArrayList<Integer> list = new ArrayList<>();
 
               public static boolean isEmpty() {
                      return list.size() == 0;
               }
 
-              public static void push (int data) {
+              public static void push(int data) {
                      list.add(data);
               }
 
-              public static int pop () {
+              public static int pop() {
 
                      if(isEmpty()) {
                             return -1;
                      }
 
-                     int top = list.get(list.size()-1);
-                     list.remove(list.size()-1);
+                     int top = list.get(list.size() - 1);
+                     list.remove(list.size() - 1);
 
                      return top;
-              }      
+              }
 
-              public static int peek () {
+              public static int peek() {
 
-                     if (isEmpty()) {
+                     if(isEmpty()) {
                             return -1;
                      }
 
                      return list.get(list.size() - 1);
               }
-
-              
        }
 
        public static void main(String args[]) {
@@ -52,34 +86,36 @@ public class StackB {
               s.push(2);
               s.push(3);
 
-              while (!s.isEmpty()) {
+              while(!s.isEmpty()) {
                      System.out.println(s.peek());
                      s.pop();
               }
        }
 }
 
-*/
 
-
-/*  
-Stack | Implementation using Linked List
-TC: O(1) each operation push, pop, peek, isEmpty
-SC: O(N)
+// ------------------------------------------------------------
+// Stack | Implementation using Linked List
+//
+// TC: O(1) each operation (push, pop, peek, isEmpty)
+// Reason: All operations are performed at the head of the linked list.
+//
+// SC: O(N)
+// Reason: Stores N nodes in the linked list.
+// ------------------------------------------------------------
 
 public class StackB {
 
        static class Node {
+
               int data;
               Node next;
-              
 
-              Node (int data) {
+              Node(int data) {
                      this.data = data;
                      this.next = null;
               }
        }
-
 
        static class Stack {
 
@@ -89,11 +125,11 @@ public class StackB {
                      return head == null;
               }
 
-              public static void push (int data) {
+              public static void push(int data) {
 
                      Node newNode = new Node(data);
 
-                     if (isEmpty()) {
+                     if(isEmpty()) {
                             head = newNode;
                             return;
                      }
@@ -102,8 +138,8 @@ public class StackB {
                      head = newNode;
               }
 
-              public static int pop () { 
-                     
+              public static int pop() {
+
                      if(isEmpty()) {
                             return -1;
                      }
@@ -114,7 +150,7 @@ public class StackB {
                      return top;
               }
 
-              public static int peek () {
+              public static int peek() {
 
                      if(isEmpty()) {
                             return -1;
@@ -132,62 +168,67 @@ public class StackB {
               s.push(2);
               s.push(3);
 
-              while (!s.isEmpty()) {
+              while(!s.isEmpty()) {
                      System.out.println(s.peek());
                      s.pop();
               }
        }
-       
-
 }
 
-*/
 
+// ------------------------------------------------------------
+// Stack | Java Collection Framework (JCF)
+//
+// TC: O(1) each operation (push, pop, peek, isEmpty)
+// Reason: Java Stack provides constant-time stack operations.
+//
+// SC: O(N)
+// Reason: Stack stores N elements.
+// ------------------------------------------------------------
 
-/* 
-Stack | JCF Stack
-TC: O(1) each operation push, pop, peek, isEmpty
-SC: O(N)
-
-import java.util.*;
+import java.util.Stack;
 
 public class StackB {
 
        public static void main(String args[]) {
 
-              Stack <Integer> s = new Stack <>();
+              Stack<Integer> s = new Stack<>();
 
               s.push(1);
               s.push(2);
               s.push(3);
 
-              while (!s.isEmpty()) {
+              while(!s.isEmpty()) {
                      System.out.println(s.peek());
                      s.pop();
               }
        }
 }
 
-*/
 
+// ------------------------------------------------------------
+// Stack | Push at Bottom using Recursion
+//
+// TC: O(N)
+// Reason: Removes and restores all stack elements once.
+//
+// SC: O(N)
+// Reason: Recursion call stack stores at most N function calls.
+// ------------------------------------------------------------
 
-/* 
-Stack | Push at Bottom using Recursion
-TC: O(N)
-SC: O(N)
-
-import java.util.*;
+import java.util.Stack;
 
 public class StackB {
 
-       public static void pushAtBottom (Stack<Integer> s, int data) {
+       public static void pushAtBottom(Stack<Integer> s, int data) {
 
-              if (s.isEmpty()) {
+              if(s.isEmpty()) {
                      s.push(data);
                      return;
               }
 
               int top = s.pop();
+
               pushAtBottom(s, data);
 
               s.push(top);
@@ -203,78 +244,70 @@ public class StackB {
 
               pushAtBottom(s, 4);
 
-              while (!s.isEmpty()) {
+              while(!s.isEmpty()) {
                      System.out.println(s.pop());
               }
        }
 }
 
-*/
 
+// ------------------------------------------------------------
+// Stack | Reverse String
+//
+// TC: O(N)
+// Reason: Each character is pushed and popped exactly once.
+//
+// SC: O(N)
+// Reason: Stack stores all characters of the string.
+// ------------------------------------------------------------
 
-/*
-Stack | Reverse String
-TC: O(N)
-SC: O(N)
-
-
-import java.util.*;
+import java.util.Stack;
 
 public class StackB {
 
-       // Reverse a String using Stack
-       public static String reverseString (String str) {
+       public static String reverseString(String str) {
 
               Stack<Character> s = new Stack<>();
 
-              int idx = 0;
-
-              while (idx < str.length()) {
-                     s.push(str.charAt(idx));
-                     idx++;
+              for(int i = 0; i < str.length(); i++) {
+                     s.push(str.charAt(i));
               }
 
-              StringBuilder result = new StringBuilder("");
+              StringBuilder result = new StringBuilder();
 
-              while (!s.isEmpty()) {
-                     char curr = s.pop();
-                     result.append(curr);
+              while(!s.isEmpty()) {
+                     result.append(s.pop());
               }
 
               return result.toString();
        }
 
-       
-
-       // Main Function
        public static void main(String args[]) {
 
               String str = "HelloWorld";
 
-              String result = reverseString(str);
-
-              System.out.println(result);
+              System.out.println(reverseString(str));
        }
 }
 
-*/
 
+// ------------------------------------------------------------
+// Stack | Reverse Stack using Recursion
+//
+// TC: O(N²)
+// Reason: For every element, pushAtBottom() takes O(N) time.
+//
+// SC: O(N)
+// Reason: Recursion call stack stores at most N function calls.
+// ------------------------------------------------------------
 
-/* 
-Stack | Recursion | Reverse Stack
-TC: O(N²)
-SC: O(N)
-
-
-
-import java.util.*;
+import java.util.Stack;
 
 public class StackB {
 
-       // Push element at the bottom of stack
        public static void pushAtBottom(Stack<Integer> s, int data) {
 
-              if (s.isEmpty()) {
+              if(s.isEmpty()) {
                      s.push(data);
                      return;
               }
@@ -286,29 +319,26 @@ public class StackB {
               s.push(top);
        }
 
-       // Reverse the stack using recursion
-       public static void reverseStack (Stack<Integer> s) {
+       public static void reverseStack(Stack<Integer> s) {
 
               if(s.isEmpty()) {
                      return;
               }
 
               int top = s.pop();
+
               reverseStack(s);
 
               pushAtBottom(s, top);
        }
-       
 
-       // Print stack
        public static void printStack(Stack<Integer> s) {
 
-              while (!s.isEmpty()) {
+              while(!s.isEmpty()) {
                      System.out.println(s.pop());
               }
        }
 
-       // Main function
        public static void main(String args[]) {
 
               Stack<Integer> s = new Stack<>();
@@ -316,6 +346,8 @@ public class StackB {
               s.push(1);
               s.push(2);
               s.push(3);
+
+              System.out.println("Original Stack:");
               printStack(s);
 
               s.push(1);
@@ -323,31 +355,35 @@ public class StackB {
               s.push(3);
 
               reverseStack(s);
-              printStack(s);
 
+              System.out.println("Reversed Stack:");
+              printStack(s);
        }
 }
 
-*/
 
-/* 
-Stock Span Problem
-TC: O(N)
-SC: O(N)
+// ------------------------------------------------------------
+// Stack | Stock Span Problem
+//
+// TC: O(N)
+// Reason: Each index is pushed and popped from the stack at most once.
+//
+// SC: O(N)
+// Reason: Stack and span array together store N elements.
+// ------------------------------------------------------------
 
-import java.util.*;
+import java.util.Stack;
 
 public class StackB {
 
-       // Calculate stock span for each day
-       public static void stockSpan (int stocks[], int span[]) {
+       public static void stockSpan(int stocks[], int span[]) {
 
               Stack<Integer> s = new Stack<>();
 
               span[0] = 1;
               s.push(0);
 
-              for(int i=1; i<stocks.length; i++) {
+              for(int i = 1; i < stocks.length; i++) {
 
                      int currPrice = stocks[i];
 
@@ -355,18 +391,18 @@ public class StackB {
                             s.pop();
                      }
 
-                     if (s.isEmpty()) {
-                            span[i] = i+1;
-                     } else {
+                     if(s.isEmpty()) {
+                            span[i] = i + 1;
+                     }
+                     else {
                             int prevHigh = s.peek();
                             span[i] = i - prevHigh;
                      }
+
                      s.push(i);
               }
        }
-       
 
-       // Main function
        public static void main(String args[]) {
 
               int stocks[] = {100, 80, 60, 70, 60, 85, 100};
@@ -374,110 +410,109 @@ public class StackB {
 
               stockSpan(stocks, span);
 
-              for (int i=0; i<span.length; i++) {
-                     System.out.print(span[i]+" ");
+              for(int i = 0; i < span.length; i++) {
+                     System.out.print(span[i] + " ");
               }
        }
 }
 
-*/
 
-/*
-Next Greater Element
+// ------------------------------------------------------------
+// Stack | Next Greater Element
+//
+// TC: O(N)
+// Reason: Every element is pushed and popped from the stack at most once.
+//
+// SC: O(N)
+// Reason: Stack and answer array store N elements.
+// ------------------------------------------------------------
 
-TC: O(N)
-SC: O(N)
-
-import java.util.*;
+import java.util.Stack;
 
 public class StackB {
 
-       // Find Next Greater Element
-       public static void nextGreater (int arr[]) {
+       public static void nextGreater(int arr[]) {
 
               Stack<Integer> s = new Stack<>();
               int nextGreater[] = new int[arr.length];
 
-              for(int i=arr.length-1; i>=0; i--) {
+              for(int i = arr.length - 1; i >= 0; i--) {
 
-                     while (!s.isEmpty() && s.peek() <= arr[i]) {
+                     while(!s.isEmpty() && s.peek() <= arr[i]) {
                             s.pop();
                      }
 
                      if(s.isEmpty()) {
                             nextGreater[i] = -1;
-                     } else {
+                     }
+                     else {
                             nextGreater[i] = s.peek();
                      }
 
                      s.push(arr[i]);
               }
 
-              for (int i=0; i < nextGreater.length; i++) {
-                     System.out.print(nextGreater[i]+" ");
+              for(int i = 0; i < nextGreater.length; i++) {
+                     System.out.print(nextGreater[i] + " ");
               }
        }
-       
 
-       // Main function
        public static void main(String args[]) {
 
-              int arr[] = { 6, 8, 0, 1, 3 };
+              int arr[] = {6, 8, 0, 1, 3};
 
               nextGreater(arr);
        }
 }
 
- */
 
+// ------------------------------------------------------------
+// Stack | Valid Parentheses
+//
+// TC: O(N)
+// Reason: Every character is processed exactly once.
+//
+// SC: O(N)
+// Reason: Stack stores opening brackets.
+// ------------------------------------------------------------
 
-/* 
-
-Valid Parentheses
-TC: O(N)
-SC: O(N)
-
-import java.util.*;
+import java.util.Stack;
 
 public class StackB {
 
-       //isValid method
        public static boolean isValid(String str) {
 
               Stack<Character> s = new Stack<>();
-              
 
-              for (int i=0; i<str.length(); i++) {
-                     
+              for(int i = 0; i < str.length(); i++) {
+
                      char ch = str.charAt(i);
 
-                     if (ch == '(' || ch == '{' || ch == '[' ) {
+                     if(ch == '(' || ch == '{' || ch == '[') {
+
                             s.push(ch);
-                     } 
+                     }
                      else {
 
                             if(s.isEmpty()) {
                                    return false;
                             }
-                            
-                            if (   (s.peek() == '(' && ch == ')') ||
-                                   (s.peek() == '{' && ch == '}') ||
-                                   (s.peek() == '[' && ch == ']')) {
+
+                            if((s.peek() == '(' && ch == ')') ||
+                               (s.peek() == '{' && ch == '}') ||
+                               (s.peek() == '[' && ch == ']')) {
+
                                    s.pop();
-                            } else {
+                            }
+                            else {
                                    return false;
                             }
-                     }      
+                     }
               }
-              if(s.isEmpty()) {
-                     return true;
-              } else {
-                     return false;
-              }
-       }
-       
 
-       //main method
+              return s.isEmpty();
+       }
+
        public static void main(String args[]) {
 
               String str = "({})[]";
@@ -486,85 +521,95 @@ public class StackB {
        }
 }
 
-*/
 
-/* 
+// ------------------------------------------------------------
+// Stack | Duplicate Parentheses
+//
+// TC: O(N)
+// Reason: Every character is pushed and popped at most once.
+//
+// SC: O(N)
+// Reason: Stack stores the expression characters.
+// ------------------------------------------------------------
 
-Duplicate Parentheses
-TC: O(N)
-SC: O(N)
-
-import java.util.*;
+import java.util.Stack;
 
 public class StackB {
 
-       public static boolean isDuplicate (String str) {
+       public static boolean isDuplicate(String str) {
 
               Stack<Character> s = new Stack<>();
 
-              for (int i=0; i<str.length(); i++) {
+              for(int i = 0; i < str.length(); i++) {
 
                      char ch = str.charAt(i);
 
-                     if (ch == ')') {
+                     if(ch == ')') {
+
                             int count = 0;
 
-                            while (s.pop() != '(') {
+                            while(s.pop() != '(') {
                                    count++;
                             }
 
-                            if (count < 1) { 
+                            if(count < 1) {
                                    return true;
                             }
+                     }
+                     else {
 
-                     } else {
                             s.push(ch);
                      }
               }
+
               return false;
        }
 
        public static void main(String args[]) {
 
-              String str1 = "((a+b))"; // true
-              String str2 = "(a-b)"; // false
+              String str1 = "((a+b))";
+              String str2 = "(a-b)";
 
               System.out.println(isDuplicate(str1));
               System.out.println(isDuplicate(str2));
        }
 }
 
-*/
 
+// ------------------------------------------------------------
+// Stack | Maximum Area in Histogram (NSL + NSR)
+//
+// TC: O(N)
+// Reason: Every index is pushed and popped from the stack at most once.
+//
+// SC: O(N)
+// Reason: Uses stack, NSL array, and NSR array of size N.
+// ------------------------------------------------------------
 
-/*  
-Max Area in Histogram using Stack (NSL + NSR)
-TC: O(N)
-SC: O(N)
-
-
-import java.util.*;
+import java.util.Stack;
 
 public class StackB {
 
        public static void maxArea(int arr[]) {
 
               int maxArea = 0;
+
               int nsr[] = new int[arr.length];
               int nsl[] = new int[arr.length];
 
               Stack<Integer> s = new Stack<>();
 
-              //next smaller right
-              for (int i=arr.length-1; i>=0; i--) {
+              // Next Smaller Right (NSR)
+              for(int i = arr.length - 1; i >= 0; i--) {
 
-                     while (!s.isEmpty() && arr[s.peek()] >= arr[i]) {
+                     while(!s.isEmpty() && arr[s.peek()] >= arr[i]) {
                             s.pop();
                      }
 
-                     if (s.isEmpty()) {
+                     if(s.isEmpty()) {
                             nsr[i] = arr.length;
-                     } else {
+                     }
+                     else {
                             nsr[i] = s.peek();
                      }
 
@@ -573,53 +618,46 @@ public class StackB {
 
               s = new Stack<>();
 
-              // next smaller left
-              for (int i=0 ; i < arr.length; i++) {
+              // Next Smaller Left (NSL)
+              for(int i = 0; i < arr.length; i++) {
 
-                     while (!s.isEmpty() && arr[s.peek()] >= arr[i]) {
+                     while(!s.isEmpty() && arr[s.peek()] >= arr[i]) {
                             s.pop();
                      }
 
-                     if (s.isEmpty()) {
+                     if(s.isEmpty()) {
                             nsl[i] = -1;
-                     } else {
+                     }
+                     else {
                             nsl[i] = s.peek();
                      }
 
                      s.push(i);
               }
 
-              //area
-              for (int i=0; i < arr.length; i++) {
+              // Calculate Maximum Area
+              for(int i = 0; i < arr.length; i++) {
 
                      int height = arr[i];
-                     int width = nsr[i]-nsl[i]-1; //j-i-1
+                     int width = nsr[i] - nsl[i] - 1;
 
-                     int area = height*width;
+                     int area = height * width;
 
                      maxArea = Math.max(maxArea, area);
               }
 
-              System.out.println(maxArea);
-
+              System.out.println("Maximum Area = " + maxArea);
        }
 
        public static void main(String args[]) {
 
-              int arr[] = { 2, 1, 5, 6, 2, 3 };
+              int arr[] = {2, 1, 5, 6, 2, 3};
 
               maxArea(arr);
        }
 }
 
-*/
-
-
-
-
-
-
-
+ */
 
 
 
