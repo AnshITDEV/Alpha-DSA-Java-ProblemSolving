@@ -1,0 +1,188 @@
+
+========================================================
+CODE 1 : Pass or Fail using Ternary Operator
+========================================================
+
+Output:
+(Input: 35)
+Pass
+
+Example:
+Input:
+35
+
+Output:
+Pass
+
+--------------------------------------------------------
+
+========================================================
+CODE 2 : Calculator using Switch Case
+========================================================
+
+Output:
+Depends on the input.
+
+Example 1:
+Input:
+10
+5
++
+
+Output:
+15.0
+
+Example 2:
+Input:
+10
+5
+-
+
+Output:
+5.0
+
+Example 3:
+Input:
+10
+5
+*
+
+Output:
+50.0
+
+Example 4:
+Input:
+10
+5
+/
+
+Output:
+2.0
+
+Example 5:
+Input:
+10
+5
+%
+
+Output:
+0.0
+
+Example 6:
+Input:
+10
+5
+^
+
+Output:
+Enter a valid operator.
+
+--------------------------------------------------------
+
+========================================================
+CODE 3 : Check Positive, Negative or Zero
+========================================================
+
+Output:
+Depends on the input.
+
+Example 1:
+Input:
+15
+
+Output:
+Positive
+
+Example 2:
+Input:
+-8
+
+Output:
+Negative
+
+Example 3:
+Input:
+0
+
+Output:
+Neither Positive nor Negative
+
+--------------------------------------------------------
+
+========================================================
+CODE 4 : Check if Number is Greater than or Equal to 100
+========================================================
+
+Output:
+Depends on the input.
+
+Example 1:
+Input:
+150
+
+Output:
+Number is Greater than or Equal to 100
+
+Example 2:
+Input:
+50
+
+Output:
+Number is Less than 100
+
+--------------------------------------------------------
+
+========================================================
+CODE 5 : Print Day of Week using Switch Case
+========================================================
+
+Output:
+Depends on the input.
+
+Example 1:
+Input:
+1
+
+Output:
+Enter a number (1-7): Monday
+
+Example 2:
+Input:
+5
+
+Output:
+Enter a number (1-7): Friday
+
+Example 3:
+Input:
+9
+
+Output:
+Enter a number (1-7): Enter a valid number.
+
+--------------------------------------------------------
+
+========================================================
+CODE 6 : Check Leap Year
+========================================================
+
+Output:
+Depends on the input.
+
+Example 1:
+Input:
+2024
+
+Output:
+Leap Year
+
+Example 2:
+Input:
+2023
+
+Output:
+Not a Leap Year
+
+--------------------------------------------------------
+
+
