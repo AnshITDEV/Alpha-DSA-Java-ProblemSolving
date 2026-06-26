@@ -1,11 +1,37 @@
 /* 
 
-Pass or Fail using Ternary Operator
+# Conditional Statements - Index
 
-TC:O(1)Reason:Only one comparison and one print operation.
-SC:O(1)Reason:Uses only a constant number of variables.
+| Sr. No. | Program                                         | Time Complexity | Space Complexity |
+| :-----: | ----------------------------------------------- | :-------------: | :--------------: |
+|    1    | Pass or Fail using Ternary Operator             |     **O(1)**    |     **O(1)**     |
+|    2    | Calculator using Switch Case                    |     **O(1)**    |     **O(1)**     |
+|    3    | Check Positive, Negative or Zero                |     **O(1)**    |     **O(1)**     |
+|    4    | Check if Number is Greater than or Equal to 100 |     **O(1)**    |     **O(1)**     |
+|    5    | Print Day of Week using Switch Case             |     **O(1)**    |     **O(1)**     |
+|    6    | Check Leap Year                                 |     **O(1)**    |     **O(1)**     |
+
+---
+
+# Complexity Summary
+
+| Complexity     | Programs                                                                                                                                                                                                   |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **O(1)**       | Pass or Fail using Ternary Operator, Calculator using Switch Case, Check Positive, Negative or Zero, Check if Number is Greater than or Equal to 100, Print Day of Week using Switch Case, Check Leap Year |
+| **O(1) Space** | Pass or Fail using Ternary Operator, Calculator using Switch Case, Check Positive, Negative or Zero, Check if Number is Greater than or Equal to 100, Print Day of Week using Switch Case, Check Leap Year |
 
 
+
+
+// ------------------------------------------------------------
+// Conditional Statements | Pass or Fail using Ternary Operator
+//
+// TC: O(1)
+// Reason: Performs one comparison and one assignment.
+//
+// SC: O(1)
+// Reason: Uses only a constant number of variables.
+// ------------------------------------------------------------
 
 import java.util.Scanner;
 
@@ -26,16 +52,15 @@ public class conditional {
 }
 
 
-
-Calculator using Switch Case
-
-TC:O(1)    
-Reason: Executes only one switch case.
-
-SC: O(1)   
-Reason: Uses only a fixed number of variables.
-
-
+// ------------------------------------------------------------
+// Conditional Statements | Calculator using Switch Case
+//
+// TC: O(1)
+// Reason: Performs one arithmetic operation based on the selected operator.
+//
+// SC: O(1)
+// Reason: Uses only a fixed number of variables.
+// ------------------------------------------------------------
 
 import java.util.Scanner;
 
@@ -87,18 +112,15 @@ public class conditional {
 }
 
 
-
-
-Check Positive, Negative or Zero
-
-TC: O(1)
-Reason: Performs only a few comparisons.
-
-SC: O(1)
-Reason: Uses only one variable.
-
-
-
+// ------------------------------------------------------------
+// Conditional Statements | Check Positive, Negative or Zero
+//
+// TC: O(1)
+// Reason: Performs only a few comparisons.
+//
+// SC: O(1)
+// Reason: Uses only one variable.
+// ------------------------------------------------------------
 
 import java.util.Scanner;
 
@@ -123,16 +145,15 @@ public class conditional {
 }
 
 
-Check if Number is Greater than or Equal to 100
-
-TC: O(1)
-Reason: Performs only one comparison.
-
-SC: O(1)
-Reason: Uses only one variable.
-
-
-
+// ------------------------------------------------------------
+// Conditional Statements | Check if Number is Greater than or Equal to 100
+//
+// TC: O(1)
+// Reason: Performs only one comparison.
+//
+// SC: O(1)
+// Reason: Uses only one variable.
+// ------------------------------------------------------------
 
 import java.util.Scanner;
 
@@ -154,13 +175,16 @@ public class conditional {
        }
 }
 
-Print Day of Week using Switch Case
 
-TC:O(1)
-Reason: Executes only one switch case.
-
-SC: O(1)
-Reason: Uses only one variable.
+// ------------------------------------------------------------
+// Conditional Statements | Print Day of Week using Switch Case
+//
+// TC: O(1)
+// Reason: Executes one switch case based on the input.
+//
+// SC: O(1)
+// Reason: Uses only one variable.
+// ------------------------------------------------------------
 
 import java.util.Scanner;
 
@@ -170,7 +194,7 @@ public class conditional {
 
               Scanner sc = new Scanner(System.in);
 
-              System.out.println("Enter a number (1-7)");
+              System.out.print("Enter a number (1-7): ");
               int weekNum = sc.nextInt();
 
               switch (weekNum) {
@@ -212,17 +236,15 @@ public class conditional {
 }
 
 
-
-Check Leap Year
-
-TC:O(1)
-Reason: Performs only a few arithmetic and logical operations.
-
-SC: O(1)
-Reason: Uses only one variable.
-
-
-
+// ------------------------------------------------------------
+// Conditional Statements | Check Leap Year
+//
+// TC: O(1)
+// Reason: Performs a constant number of arithmetic and logical operations.
+//
+// SC: O(1)
+// Reason: Uses only one variable.
+// ------------------------------------------------------------
 
 import java.util.Scanner;
 
@@ -243,6 +265,7 @@ public class conditional {
               sc.close();
        }
 }
+
 
 
 

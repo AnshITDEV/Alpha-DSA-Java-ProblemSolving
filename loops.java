@@ -1,38 +1,51 @@
 
-/* 
-
-Loops chapter from Apna College
-
-The complete list is:
-
-1. ✅ Print Numbers from 1 to 10 (While Loop)
-2. ✅ Sum of First N Natural Numbers (While Loop)
-3. ✅ Print "Hello World" 10 Times (For Loop)
-4. ✅ Print 4×4 Star Pattern (For Loop)
-5. ✅ Print 4×4 Star Pattern (While Loop)
-6. ✅ Reverse Digits of a Number
-7. ✅ Reverse a Number
-8. ✅ Do-While Loop
-9. ✅ Break and Continue
-10. ✅ Prime Number Check
-11. ✅ Sum of Even and Odd Numbers
-12. ✅ Factorial of a Number
-13. ✅ Multiplication Table
-14. ✅ Variable Scope in For Loop
+/*
 
 
+# Loops - Index
+
+| Sr. No. | Program                                     | Time Complexity | Space Complexity |
+| :-----: | ------------------------------------------- | :-------------: | :--------------: |
+|    1    | Print Numbers from 1 to 10 (While Loop)     |     **O(N)**    |     **O(1)**     |
+|    2    | Sum of First N Natural Numbers (While Loop) |     **O(N)**    |     **O(1)**     |
+|    3    | Print "Hello World" 10 Times (For Loop)     |     **O(N)**    |     **O(1)**     |
+|    4    | Print 4 × 4 Star Pattern (For Loop)         |     **O(N)**    |     **O(1)**     |
+|    5    | Print 4 × 4 Star Pattern (While Loop)       |     **O(N)**    |     **O(1)**     |
+|    6    | Reverse Digits of a Number                  |     **O(D)**    |     **O(1)**     |
+|    7    | Reverse a Number                            |     **O(D)**    |     **O(1)**     |
+|    8    | Print "Hello World" using Do-While Loop     |     **O(N)**    |     **O(1)**     |
+|    9    | Use Continue and Break in a Loop            |     **O(N)**    |     **O(1)**     |
+|    10   | Check Whether a Number is Prime             |    **O(√N)**    |     **O(1)**     |
+|    11   | Find Sum of Even and Odd Numbers            |     **O(N)**    |     **O(1)**     |
+|    12   | Find the Factorial of a Number              |     **O(N)**    |     **O(1)**     |
+|    13   | Print Multiplication Table of a Number      |     **O(1)**    |     **O(1)**     |
+|    14   | Variable Scope in For Loop                  |     **O(1)**    |     **O(1)**     |
+
+---
+
+# Complexity Summary
+
+| Complexity     | Programs                                                                                                                                                                                                                                                                                                                                               |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **O(1)**       | Print Multiplication Table of a Number, Variable Scope in For Loop                                                                                                                                                                                                                                                                                     |
+| **O(√N)**      | Check Whether a Number is Prime                                                                                                                                                                                                                                                                                                                        |
+| **O(D)**       | Reverse Digits of a Number, Reverse a Number                                                                                                                                                                                                                                                                                                           |
+| **O(N)**       | Print Numbers from 1 to 10 (While Loop), Sum of First N Natural Numbers (While Loop), Print "Hello World" 10 Times (For Loop), Print 4 × 4 Star Pattern (For Loop), Print 4 × 4 Star Pattern (While Loop), Print "Hello World" using Do-While Loop, Use Continue and Break in a Loop, Find Sum of Even and Odd Numbers, Find the Factorial of a Number |
+| **O(1) Space** | All programs in this chapter                                                                                                                                                                                                                                                                                                                           |
 
 
-Print Numbers from 1 to 10 using While Loop
+// ------------------------------------------------------------
+// Loops | Print Numbers from 1 to 10 using While Loop
+//
+// TC: O(N)
+// Reason: The while loop runs N times (here N = 10).
+//
+// SC: O(1)
+// Reason: Uses only one loop variable.
+// ------------------------------------------------------------
 
-TC: O(N)
-Reason: The while loop runs N times (here N = 10).
-
-SC: O(1)
-Reason: Uses only one loop variable.
-
-```java
 public class loops {
+
        public static void main(String args[]) {
 
               int i = 1;
@@ -43,27 +56,28 @@ public class loops {
               }
        }
 }
-```
 
-------------------------------------------------------------
 
-Sum of First N Natural Numbers using While Loop
+// ------------------------------------------------------------
+// Loops | Sum of First N Natural Numbers using While Loop
+//
+// TC: O(N)
+// Reason: The loop runs N times to calculate the sum.
+//
+// SC: O(1)
+// Reason: Uses only a constant number of variables.
+// ------------------------------------------------------------
 
-TC: O(N)
-Reason: The loop runs N times to calculate the sum.
-
-SC: O(1)
-Reason: Uses only a constant number of variables.
-
-```java
 import java.util.Scanner;
 
 public class loops {
+
        public static void main(String args[]) {
 
               Scanner sc = new Scanner(System.in);
 
               int n = sc.nextInt();
+
               int i = 1;
               int sum = 0;
 
@@ -77,20 +91,20 @@ public class loops {
               sc.close();
        }
 }
-```
 
-------------------------------------------------------------
 
-Print "Hello World" 10 Times using For Loop
+// ------------------------------------------------------------
+// Loops | Print "Hello World" 10 Times using For Loop
+//
+// TC: O(N)
+// Reason: The for loop runs N times (here N = 10).
+//
+// SC: O(1)
+// Reason: Uses only one loop variable.
+// ------------------------------------------------------------
 
-TC: O(N)
-Reason: The for loop runs N times (here N = 10).
-
-SC: O(1)
-Reason: Uses only one loop variable.
-
-```java
 public class loops {
+
        public static void main(String args[]) {
 
               for(int i = 0; i < 10; i++) {
@@ -98,20 +112,20 @@ public class loops {
               }
        }
 }
-```
 
-------------------------------------------------------------
 
-Print a 4 × 4 Star Pattern using For Loop
+// ------------------------------------------------------------
+// Loops | Print 4 × 4 Star Pattern using For Loop
+//
+// TC: O(N)
+// Reason: The for loop runs N times (here N = 4).
+//
+// SC: O(1)
+// Reason: Uses only one loop variable.
+// ------------------------------------------------------------
 
-TC: O(N)
-Reason: The for loop runs N times (here N = 4).
-
-SC: O(1)
-Reason: Uses only one loop variable.
-
-```java
 public class loops {
+
        public static void main(String args[]) {
 
               for(int i = 0; i < 4; i++) {
@@ -119,20 +133,20 @@ public class loops {
               }
        }
 }
-```
 
-------------------------------------------------------------
 
-Print a 4 × 4 Star Pattern using While Loop
+// ------------------------------------------------------------
+// Loops | Print 4 × 4 Star Pattern using While Loop
+//
+// TC: O(N)
+// Reason: The while loop runs N times (here N = 4).
+//
+// SC: O(1)
+// Reason: Uses only one loop variable.
+// ------------------------------------------------------------
 
-TC: O(N)
-Reason: The while loop runs N times (here N = 4).
-
-SC: O(1)
-Reason: Uses only one loop variable.
-
-```java
 public class loops {
+
        public static void main(String args[]) {
 
               int i = 0;
@@ -143,22 +157,22 @@ public class loops {
               }
        }
 }
-```
 
-------------------------------------------------------------
 
-Reverse Digits of a Number (Without Storing)
+// ------------------------------------------------------------
+// Loops | Reverse Digits of a Number (Without Storing)
+//
+// TC: O(D)
+// Reason: The loop runs once for every digit of the number.
+//
+// SC: O(1)
+// Reason: Uses only a constant number of variables.
+// ------------------------------------------------------------
 
-TC: O(D)
-Reason: The loop runs once for every digit of the number.
-
-SC: O(1)
-Reason: Uses only a constant number of variables.
-
-```java
 import java.util.Scanner;
 
 public class loops {
+
        public static void main(String args[]) {
 
               Scanner sc = new Scanner(System.in);
@@ -167,8 +181,11 @@ public class loops {
               int x = sc.nextInt();
 
               while(x > 0) {
+
                      int lastDigit = x % 10;
+
                      System.out.print(lastDigit);
+
                      x = x / 10;
               }
 
@@ -177,22 +194,22 @@ public class loops {
               sc.close();
        }
 }
-```
 
-------------------------------------------------------------
 
-Reverse a Number
+// ------------------------------------------------------------
+// Loops | Reverse a Number
+//
+// TC: O(D)
+// Reason: The loop runs once for every digit of the number.
+//
+// SC: O(1)
+// Reason: Uses only a constant number of variables.
+// ------------------------------------------------------------
 
-TC: O(D)
-Reason: The loop runs once for every digit of the number.
-
-SC: O(1)
-Reason: Uses only a constant number of variables.
-
-```java
 import java.util.Scanner;
 
 public class loops {
+
        public static void main(String args[]) {
 
               Scanner sc = new Scanner(System.in);
@@ -203,8 +220,11 @@ public class loops {
               int rev = 0;
 
               while(x > 0) {
+
                      int lastDigit = x % 10;
+
                      rev = (rev * 10) + lastDigit;
+
                      x = x / 10;
               }
 
@@ -213,13 +233,12 @@ public class loops {
               sc.close();
        }
 }
-```
 
 
 
 
 // ------------------------------------------------------------
-// Print "Hello World" using Do-While Loop
+// Loops | Print "Hello World" using Do-While Loop
 //
 // TC: O(N)
 // Reason: The do-while loop runs N times (here N = 2).
@@ -229,6 +248,7 @@ public class loops {
 // ------------------------------------------------------------
 
 public class loops {
+
        public static void main(String args[]) {
 
               int i = 1;
@@ -240,8 +260,9 @@ public class loops {
        }
 }
 
+
 // ------------------------------------------------------------
-// Use Continue and Break in a Loop
+// Loops | Use Continue and Break in a Loop
 //
 // TC: O(N)
 // Reason: The loop processes N user inputs until -1 is entered.
@@ -253,6 +274,7 @@ public class loops {
 import java.util.Scanner;
 
 public class loops {
+
        public static void main(String args[]) {
 
               Scanner sc = new Scanner(System.in);
@@ -276,8 +298,9 @@ public class loops {
        }
 }
 
+
 // ------------------------------------------------------------
-// Check Whether a Number is Prime
+// Loops | Check Whether a Number is Prime
 //
 // TC: O(√N)
 // Reason: Checks divisibility only up to √N.
@@ -289,6 +312,7 @@ public class loops {
 import java.util.Scanner;
 
 public class loops {
+
        public static void main(String args[]) {
 
               Scanner sc = new Scanner(System.in);
@@ -296,7 +320,9 @@ public class loops {
               int x = sc.nextInt();
 
               if (x == 0 || x == 1) {
+
                      System.out.println(x + " is Not a Prime Number");
+
               } else {
 
                      boolean isPrime = true;
@@ -320,8 +346,9 @@ public class loops {
        }
 }
 
+
 // ------------------------------------------------------------
-// Find Sum of Even and Odd Numbers
+// Loops | Find Sum of Even and Odd Numbers
 //
 // TC: O(N)
 // Reason: The loop runs once for each input number.
@@ -333,6 +360,7 @@ public class loops {
 import java.util.Scanner;
 
 public class loops {
+
        public static void main(String args[]) {
 
               Scanner sc = new Scanner(System.in);
@@ -360,8 +388,9 @@ public class loops {
        }
 }
 
+
 // ------------------------------------------------------------
-// Find the Factorial of a Number
+// Loops | Find the Factorial of a Number
 //
 // TC: O(N)
 // Reason: The loop runs N times to calculate the factorial.
@@ -373,11 +402,13 @@ public class loops {
 import java.util.Scanner;
 
 public class loops {
+
        public static void main(String args[]) {
 
               Scanner sc = new Scanner(System.in);
 
               int n = sc.nextInt();
+
               long fact = 1;
 
               for (int i = 1; i <= n; i++) {
@@ -390,8 +421,9 @@ public class loops {
        }
 }
 
+
 // ------------------------------------------------------------
-// Print Multiplication Table of a Number
+// Loops | Print Multiplication Table of a Number
 //
 // TC: O(1)
 // Reason: The loop always runs exactly 10 times.
@@ -403,6 +435,7 @@ public class loops {
 import java.util.Scanner;
 
 public class loops {
+
        public static void main(String args[]) {
 
               Scanner sc = new Scanner(System.in);
@@ -417,8 +450,9 @@ public class loops {
        }
 }
 
+
 // ------------------------------------------------------------
-// Variable Scope in For Loop
+// Loops | Variable Scope in For Loop
 //
 // TC: O(1)
 // Reason: The explanation does not involve any algorithmic computation.
@@ -428,6 +462,7 @@ public class loops {
 // ------------------------------------------------------------
 
 public class loops {
+
        public static void main(String args[]) {
 
               for (int i = 0; i <= 5; i++) {
@@ -439,187 +474,14 @@ public class loops {
 }
 
 /*
- * Reason:
- * The variable 'i' is declared inside the for loop.
- * Its scope is limited to that loop only.
- * After the loop ends, 'i' no longer exists.
- * Therefore, using 'i' outside the loop causes a compilation error.
- */
-
-
+Reason:
+The variable 'i' is declared inside the for loop.
+Its scope is limited to that loop only.
+After the loop ends, 'i' no longer exists.
+Therefore, using 'i' outside the loop causes a compilation error.
 */
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ */
