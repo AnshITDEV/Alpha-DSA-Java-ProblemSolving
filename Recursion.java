@@ -441,8 +441,8 @@ public class Recursion {
               String str = "appnacollege";
 
               removeDuplicates(str, 0,
-                               new StringBuilder(""),
-                               new boolean[26]);
+              new StringBuilder(""),
+              new boolean[26]);
        }
 }
 

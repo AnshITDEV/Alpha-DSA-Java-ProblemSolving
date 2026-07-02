@@ -1,4 +1,4 @@
-/*     
+/*
 ## Divide & Conquer - Index
 
 | Sr. No. | Program                        |             Time Complexity             | Space Complexity |
