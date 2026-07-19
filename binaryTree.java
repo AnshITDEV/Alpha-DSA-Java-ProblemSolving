@@ -1,32 +1,86 @@
 
-/* 
-Binary Tree Representation using Preorder Traversal Array (Build Binary Tree Recursively)
 
-public class binaryTree {
+
+# Binary Trees - Index
+
+| Sr. No. | Program                                   | Time Complexity | Space Complexity |
+| ------: | ----------------------------------------- | :-------------: | :--------------: |
+|       1 | Binary Tree Construction (Preorder Array) |       O(N)      |       O(H)       |
+|       2 | Preorder Traversal                        |       O(N)      |       O(H)       |
+|       3 | Inorder Traversal                         |       O(N)      |       O(H)       |
+|       4 | Postorder Traversal                       |       O(N)      |       O(H)       |
+|       5 | Level Order Traversal                     |       O(N)      |       O(N)       |
+|       6 | Height of Binary Tree                     |       O(N)      |       O(H)       |
+|       7 | Count Total Nodes                         |       O(N)      |       O(H)       |
+|       8 | Sum of Nodes                              |       O(N)      |       O(H)       |
+|       9 | Diameter of Binary Tree (Brute Force)     |      O(N²)      |       O(H)       |
+|      10 | Diameter of Binary Tree (Optimized)       |       O(N)      |       O(H)       |
+|      11 | Subtree of Another Tree                   |     O(N × M)    |       O(H)       |
+|      12 | Top View of Binary Tree                   |       O(N)      |       O(N)       |
+|      13 | Kth Level of Binary Tree                  |       O(N)      |       O(H)       |
+|      14 | Lowest Common Ancestor (Approach 1)       |       O(N)      |       O(N)       |
+|      15 | Lowest Common Ancestor (Approach 2)       |       O(N)      |       O(H)       |
+|      16 | Minimum Distance Between Two Nodes        |       O(N)      |       O(H)       |
+|      17 | Kth Ancestor of a Node                    |       O(N)      |       O(H)       |
+|      18 | Transform to Sum Tree                     |       O(N)      |       O(H)       |
+
+---
+
+# Complexity Summary
+
+| Complexity   | Programs                             |
+| ------------ | ------------------------------------ |
+| **O(N²)**    | Diameter (Brute Force)               |
+| **O(N × M)** | Subtree of Another Tree              |
+| **O(N)**     | All remaining Binary Tree operations |
+
+
+
+
+
+
+
+// ============================================================
+//                  BINARY TREES - PART 1
+// ============================================================
+
+// ------------------------------------------------------------
+// Binary Trees | Binary Tree Construction (Preorder Array)
+//
+// TC: O(N)
+// Reason: Every element of the preorder array is processed once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
+
+public class BinaryTree {
 
        static class Node {
               int data;
               Node left;
               Node right;
 
-              Node(int data) {
-                     this.data = data;
-                     left = null;
-                     right = null;
-              }
+        Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
        }
 
-       static class BinaryTree {
+       static class BinaryTreeBuilder {
 
               static int idx = -1;
 
+              // Builds Binary Tree from preorder array
               public static Node buildTree(int nodes[]) {
+
                      idx++;
 
-                     if(nodes[idx] == -1) {
+                     if (nodes[idx] == -1) {
                             return null;
                      }
-              
+
                      Node newNode = new Node(nodes[idx]);
 
                      newNode.left = buildTree(nodes);
@@ -34,34 +88,37 @@ public class binaryTree {
 
                      return newNode;
               }
-
-              
        }
 
        public static void main(String args[]) {
 
               int nodes[] = {
-                     1, 2, 4, -1, -1, 5, -1, -1,
-                     3, -1, 6, -1, -1
+                            1, 2, 4, -1, -1, 5, -1, -1,
+                            3, -1, 6, -1, -1
               };
 
-              BinaryTree tree = new BinaryTree();
-
-              Node root = tree.buildTree(nodes);
+              Node root = BinaryTreeBuilder.buildTree(nodes);
 
               System.out.println(root.data);
        }
 }
 
+/*
+ * Output:
+ * 1
+ */
 
+// ------------------------------------------------------------
+// Binary Trees | Preorder Traversal
+//
+// TC: O(N)
+// Reason: Every node is visited exactly once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-
-Preorder Traversal
-
-
-
-
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -75,11 +132,11 @@ public class binaryTree {
               }
        }
 
-       static class BinaryTree {
+       static class BinaryTreeBuilder {
 
               static int idx = -1;
 
-              // Builds the binary tree from preorder array
+              // Builds Binary Tree from preorder array
               public static Node buildTree(int nodes[]) {
 
                      idx++;
@@ -95,19 +152,19 @@ public class binaryTree {
 
                      return newNode;
               }
+       }
 
-              // Preorder Traversal (Root -> Left -> Right)
-              public static void preOrder(Node root) {
+       // Preorder Traversal
+       public static void preOrder(Node root) {
 
-                     if(root == null) {
-                            return;
-                     }
-
-                     System.out.print(root.data+" ");
-
-                     preOrder(root.left);
-                     preOrder(root.right);
+              if (root == null) {
+                     return;
               }
+
+              System.out.print(root.data + " ");
+
+              preOrder(root.left);
+              preOrder(root.right);
        }
 
        public static void main(String args[]) {
@@ -117,21 +174,34 @@ public class binaryTree {
                             3, -1, 6, -1, -1
               };
 
-              Node root = BinaryTree.buildTree(nodes);
+              Node root = BinaryTreeBuilder.buildTree(nodes);
 
-              BinaryTree.preOrder(root);
+              preOrder(root);
        }
 }
 
+/*
+ * Output:
+ * 1 2 4 5 3 6
+ */
 
 
 
+// ============================================================
+// BINARY TREES - PART 2
+// ============================================================
 
+// ------------------------------------------------------------
+// Binary Trees | Inorder Traversal
+//
+// TC: O(N)
+// Reason: Every node is visited exactly once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-Inorder
-
-
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -145,11 +215,11 @@ public class binaryTree {
               }
        }
 
-       static class BinaryTree {
+       static class BinaryTreeBuilder {
 
               static int idx = -1;
 
-              // Builds the binary tree from preorder array
+              // Builds Binary Tree from preorder array
               public static Node buildTree(int nodes[]) {
 
                      idx++;
@@ -165,30 +235,18 @@ public class binaryTree {
 
                      return newNode;
               }
+       }
 
-              // Preorder Traversal (Root -> Left -> Right)
-              public static void preOrder(Node root) {
+       // Inorder Traversal
+       public static void inOrder(Node root) {
 
-                     if (root == null) {
-                            return;
-                     }
-
-                     System.out.print(root.data + " ");
-
-                     preOrder(root.left);
-                     preOrder(root.right);
-              } 
-
-              public static void inOrder(Node root) {
-
-                     if (root == null) {
-                            return;
-                     }
-
-                     inOrder(root.left);
-                     System.out.print(root.data + " ");
-                     inOrder(root.right);
+              if (root == null) {
+                     return;
               }
+
+              inOrder(root.left);
+              System.out.print(root.data + " ");
+              inOrder(root.right);
        }
 
        public static void main(String args[]) {
@@ -198,20 +256,28 @@ public class binaryTree {
                             3, -1, 6, -1, -1
               };
 
-              Node root = BinaryTree.buildTree(nodes);
+              Node root = BinaryTreeBuilder.buildTree(nodes);
 
-              BinaryTree.preOrder(root);
-              System.out.println();
-              BinaryTree.inOrder(root);
+              inOrder(root);
        }
 }
 
+/*
+ * Output:
+ * 4 2 5 1 3 6
+ */
 
+// ------------------------------------------------------------
+// Binary Trees | Postorder Traversal
+//
+// TC: O(N)
+// Reason: Every node is visited exactly once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-Postorder Traversal of Binary Tree
-
-
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -225,11 +291,11 @@ public class binaryTree {
               }
        }
 
-       static class BinaryTree {
+       static class BinaryTreeBuilder {
 
               static int idx = -1;
 
-              // Builds the binary tree from preorder array
+              // Builds Binary Tree from preorder array
               public static Node buildTree(int nodes[]) {
 
                      idx++;
@@ -245,41 +311,18 @@ public class binaryTree {
 
                      return newNode;
               }
+       }
 
-              // Preorder Traversal (Root -> Left -> Right)
-              public static void preOrder(Node root) {
+       // Postorder Traversal
+       public static void postOrder(Node root) {
 
-                     if (root == null) {
-                            return;
-                     }
-
-                     System.out.print(root.data + " ");
-
-                     preOrder(root.left);
-                     preOrder(root.right);
+              if (root == null) {
+                     return;
               }
 
-              public static void inOrder(Node root) {
-
-                     if (root == null) {
-                            return;
-                     }
-
-                     inOrder(root.left);
-                     System.out.print(root.data + " ");
-                     inOrder(root.right);
-              }
-
-              public static void postOrder(Node root) {
-
-                     if (root == null) {
-                            return;
-                     }
-
-                     postOrder(root.left);
-                     postOrder(root.right);
-                     System.out.print(root.data + " ");
-              }
+              postOrder(root.left);
+              postOrder(root.right);
+              System.out.print(root.data + " ");
        }
 
        public static void main(String args[]) {
@@ -289,27 +332,35 @@ public class binaryTree {
                             3, -1, 6, -1, -1
               };
 
-              Node root = BinaryTree.buildTree(nodes);
+              Node root = BinaryTreeBuilder.buildTree(nodes);
 
-              BinaryTree.preOrder(root);
-              System.out.println();
-              BinaryTree.inOrder(root);
-              System.out.println();
-              BinaryTree.postOrder(root);
+              postOrder(root);
        }
 }
 
+/*
+ * Output:
+ * 4 5 2 6 3 1
+ */
 
 
+// ============================================================
+// BINARY TREES - PART 3
+// ============================================================
 
-Level Order
-
-
-
+// ------------------------------------------------------------
+// Binary Trees | Level Order Traversal
+//
+// TC: O(N)
+// Reason: Every node is inserted into and removed from the queue once.
+//
+// SC: O(N)
+// Reason: Queue may contain all nodes of one level in the worst case.
+// ------------------------------------------------------------
 
 import java.util.*;
 
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -323,11 +374,11 @@ public class binaryTree {
               }
        }
 
-       static class BinaryTree {
+       static class BinaryTreeBuilder {
 
               static int idx = -1;
 
-              // Builds the binary tree from preorder array
+              // Builds Binary Tree from preorder array
               public static Node buildTree(int nodes[]) {
 
                      idx++;
@@ -343,79 +394,44 @@ public class binaryTree {
 
                      return newNode;
               }
+       }
 
-              // Preorder Traversal (Root -> Left -> Right)
-              public static void preOrder(Node root) {
+       // Level Order Traversal
+       public static void levelOrder(Node root) {
 
-                     if (root == null) {
-                            return;
-                     }
-
-                     System.out.print(root.data + " ");
-
-                     preOrder(root.left);
-                     preOrder(root.right);
+              if (root == null) {
+                     return;
               }
 
-              // Inorder Traversal (Left -> Root -> Right)
-              public static void inOrder(Node root) {
+              Queue<Node> q = new LinkedList<>();
 
-                     if (root == null) {
-                            return;
-                     }
+              q.add(root);
+              q.add(null);
 
-                     inOrder(root.left);
-                     System.out.print(root.data + " ");
-                     inOrder(root.right);
-              }
+              while (!q.isEmpty()) {
 
-              // Postorder Traversal (Left -> Right -> Root)
-              public static void postOrder(Node root) {
+                     Node curr = q.remove();
 
-                     if (root == null) {
-                            return;
-                     }
+                     if (curr == null) {
 
-                     postOrder(root.left);
-                     postOrder(root.right);
-                     System.out.print(root.data + " ");
-              }
+                            System.out.println();
 
-              // Level Order Traversal
-              public static void levelOrder(Node root) {
-
-                     if(root == null) {
-                            return;
-                     }
-
-                     Queue<Node> q = new java.util.LinkedList<>();
-
-                     q.add(root);
-                     q.add(null);
-
-                     while(!q.isEmpty()) {
-
-                            Node curr = q.remove();
-
-                            if(curr == null) {
-                                   System.out.println();
-
-                                   if(q.isEmpty()) {
-                                          break;
-                                   } else {
-                                          q.add(null);
-                                   }
+                            if (q.isEmpty()) {
+                                   break;
                             } else {
-                                   System.out.print(curr.data+" ");
+                                   q.add(null);
+                            }
 
-                                   if(curr.left != null)  {
-                                          q.add(curr.left);
-                                   }
+                     } else {
 
-                                   if (curr.right != null) {
-                                          q.add(curr.right);
-                                   }
-                                   
+                            System.out.print(curr.data + " ");
+
+                            if (curr.left != null) {
+                                   q.add(curr.left);
+                            }
+
+                            if (curr.right != null) {
+                                   q.add(curr.right);
                             }
                      }
               }
@@ -428,38 +444,32 @@ public class binaryTree {
                             3, -1, 6, -1, -1
               };
 
-              Node root = BinaryTree.buildTree(nodes);
+              Node root = BinaryTreeBuilder.buildTree(nodes);
 
-              System.out.println("Preorder Traversal:");
-              BinaryTree.preOrder(root);
-
-              System.out.println("\n");
-
-              System.out.println("Inorder Traversal:");
-              BinaryTree.inOrder(root);
-
-              System.out.println("\n");
-
-              System.out.println("Postorder Traversal:");
-              BinaryTree.postOrder(root);
-
-              System.out.println("\n");
-
-              System.out.println("Level Order Traversal:");
-              BinaryTree.levelOrder(root);
+              levelOrder(root);
        }
 }
 
+/*
+ * Output:
+ * 1
+ * 2 3
+ * 4 5 6
+ */
 
+// ------------------------------------------------------------
+// Binary Trees | Height of Binary Tree
+//
+// TC: O(N)
+// Reason: Every node is visited exactly once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-Height of a Binary Tree
+public class BinaryTree {
 
-
-
-
-public class binaryTree {
-
-       static class Node{
+       static class Node {
               int data;
               Node left;
               Node right;
@@ -471,19 +481,28 @@ public class binaryTree {
               }
        }
 
+       // Finds Height of Binary Tree
        public static int height(Node root) {
 
-              if(root == null) {
+              if (root == null) {
                      return 0;
               }
 
               int leftHeight = height(root.left);
               int rightHeight = height(root.right);
 
-              return Math.max(leftHeight,rightHeight) + 1;
+              return Math.max(leftHeight, rightHeight) + 1;
        }
 
        public static void main(String args[]) {
+
+              /*
+               * 1
+               * / \
+               * 4 5
+               * / \ \
+               * 6 7 8
+               */
 
               Node root = new Node(1);
               root.left = new Node(4);
@@ -496,11 +515,28 @@ public class binaryTree {
        }
 }
 
+/*
+ * Output:
+ * 3
+ */
 
 
-count the number of nodes
 
-public class binaryTree {
+// ============================================================
+// BINARY TREES - PART 4
+// ============================================================
+
+// ------------------------------------------------------------
+// Binary Trees | Count Total Nodes
+//
+// TC: O(N)
+// Reason: Every node is visited exactly once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
+
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -514,21 +550,28 @@ public class binaryTree {
               }
        }
 
+       // Counts Total Nodes
        public static int count(Node root) {
 
-              if(root == null) {
+              if (root == null) {
                      return 0;
               }
 
               int leftCount = count(root.left);
               int rightCount = count(root.right);
 
-              return leftCount+rightCount+1;
+              return leftCount + rightCount + 1;
        }
 
-       
-
        public static void main(String args[]) {
+
+              /*
+               * 1
+               * / \
+               * 4 5
+               * / \ \
+               * 6 7 8
+               */
 
               Node root = new Node(1);
               root.left = new Node(4);
@@ -541,11 +584,22 @@ public class binaryTree {
        }
 }
 
+/*
+ * Output:
+ * 6
+ */
 
-sum of nodes data
+// ------------------------------------------------------------
+// Binary Trees | Sum of Nodes
+//
+// TC: O(N)
+// Reason: Every node is visited exactly once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -559,6 +613,7 @@ public class binaryTree {
               }
        }
 
+       // Finds Sum of All Nodes
        public static int sum(Node root) {
 
               if (root == null) {
@@ -568,10 +623,18 @@ public class binaryTree {
               int leftSum = sum(root.left);
               int rightSum = sum(root.right);
 
-              return leftSum+rightSum+root.data;
+              return leftSum + rightSum + root.data;
        }
 
        public static void main(String args[]) {
+
+              /*
+               * 1
+               * / \
+               * 4 5
+               * / \ \
+               * 6 7 8
+               */
 
               Node root = new Node(1);
               root.left = new Node(4);
@@ -584,15 +647,22 @@ public class binaryTree {
        }
 }
 
+/*
+ * Output:
+ * 31
+ */
 
+// ------------------------------------------------------------
+// Binary Trees | Diameter of Binary Tree (Brute Force)
+//
+// TC: O(N²)
+// Reason: Height is calculated for every node.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-
-diameter of the tree
-
-
-
-
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -606,22 +676,7 @@ public class binaryTree {
               }
        }
 
-       public static int diameter(Node root) {
-              
-              if(root == null) {
-                     return 0;
-              }
-
-              int leftD = diameter(root.left);
-              int rightD = diameter(root.right);
-              int leftH = height(root.left);
-              int rightH = height(root.right);
-
-              int selfD = leftH+rightH+1;
-              
-              return Math.max(selfD,Math.max(leftD,rightD));
-       }
-
+       // Finds Height of Binary Tree
        public static int height(Node root) {
 
               if (root == null) {
@@ -632,10 +687,35 @@ public class binaryTree {
               int rightHeight = height(root.right);
 
               return Math.max(leftHeight, rightHeight) + 1;
-       } 
+       }
 
-       
+       // Finds Diameter of Binary Tree (Brute Force)
+       public static int diameter(Node root) {
+
+              if (root == null) {
+                     return 0;
+              }
+
+              int leftDiameter = diameter(root.left);
+              int rightDiameter = diameter(root.right);
+
+              int leftHeight = height(root.left);
+              int rightHeight = height(root.right);
+
+              int selfDiameter = leftHeight + rightHeight + 1;
+
+              return Math.max(selfDiameter, Math.max(leftDiameter, rightDiameter));
+       }
+
        public static void main(String args[]) {
+
+              /*
+               * 1
+               * / \
+               * 4 5
+               * / \ \
+               * 6 7 8
+               */
 
               Node root = new Node(1);
               root.left = new Node(4);
@@ -648,12 +728,28 @@ public class binaryTree {
        }
 }
 
+/*
+ * Output:
+ * 5
+ */
 
 
 
-Diameter of the tree optimized
+// ============================================================
+// BINARY TREES - PART 5
+// ============================================================
 
-public class binaryTree {
+// ------------------------------------------------------------
+// Binary Trees | Diameter of Binary Tree (Optimized)
+//
+// TC: O(N)
+// Reason: Every node is visited exactly once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
+
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -667,61 +763,44 @@ public class binaryTree {
               }
        }
 
-       public static int diameter2(Node root) {
-
-              if (root == null) {
-                     return 0;
-              }
-
-              int leftD = diameter2(root.left);
-              int rightD = diameter2(root.right);
-              int leftH = height(root.left);
-              int rightH = height(root.right);
-
-              int selfD = leftH + rightH + 1;
-
-              return Math.max(selfD, Math.max(leftD, rightD));
-       }
-
-       public static int height(Node root) {
-
-              if (root == null) {
-                     return 0;
-              }
-
-              int leftHeight = height(root.left);
-              int rightHeight = height(root.right);
-
-              return Math.max(leftHeight, rightHeight) + 1;
-       }
-
        static class Info {
-              int ht;
               int diam;
+              int ht;
 
-              public Info(int diam, int ht) {
-                     this.ht = ht;
+              Info(int diam, int ht) {
                      this.diam = diam;
+                     this.ht = ht;
               }
        }
 
+       // Finds Diameter of Binary Tree (Optimized)
        public static Info diameter(Node root) {
-              
-              if(root == null) {
-                     return new Info(0,0);
+
+              if (root == null) {
+                     return new Info(0, 0);
               }
 
               Info leftInfo = diameter(root.left);
               Info rightInfo = diameter(root.right);
 
-              int diam = Math.max(Math.max(leftInfo.diam, rightInfo.diam), leftInfo.ht+rightInfo.ht+1);
-              int ht = Math.max(leftInfo.ht,rightInfo.ht)+1;
+              int diam = Math.max(
+                            Math.max(leftInfo.diam, rightInfo.diam),
+                            leftInfo.ht + rightInfo.ht + 1);
 
-              return new Info (diam, ht);
+              int ht = Math.max(leftInfo.ht, rightInfo.ht) + 1;
+
+              return new Info(diam, ht);
        }
 
-
        public static void main(String args[]) {
+
+              /*
+               * 1
+               * / \
+               * 4 5
+               * / \ \
+               * 6 7 8
+               */
 
               Node root = new Node(1);
               root.left = new Node(4);
@@ -734,16 +813,22 @@ public class binaryTree {
        }
 }
 
+/*
+ * Output:
+ * 5
+ */
 
+// ------------------------------------------------------------
+// Binary Trees | Subtree of Another Tree
+//
+// TC: O(N × M)
+// Reason: Each node of the main tree may compare the entire subtree.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-
-subtree of another tree
-
-
-
-
-
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -759,47 +844,52 @@ public class binaryTree {
 
        // Checks if two trees are identical
        public static boolean isIdentical(Node root, Node subRoot) {
-              
-              if(root == null && subRoot == null) {
+
+              if (root == null && subRoot == null) {
                      return true;
               }
 
-              if(root == null || subRoot == null || root.data != subRoot.data) {
+              if (root == null || subRoot == null || root.data != subRoot.data) {
                      return false;
               }
 
-              if(!isIdentical(root.left, subRoot.left)) {
+              if (!isIdentical(root.left, subRoot.left)) {
                      return false;
               }
 
-              if(!isIdentical(root.right, subRoot.right)) {
+              if (!isIdentical(root.right, subRoot.right)) {
                      return false;
               }
 
               return true;
        }
-       
 
        // Checks whether subRoot is a subtree of root
        public static boolean isSubtree(Node root, Node subRoot) {
-              if(root == null) {
+
+              if (root == null) {
                      return false;
               }
 
-              
-              if(root.data == subRoot.data) {
-                     if(isIdentical(root, subRoot)) {
+              if (root.data == subRoot.data) {
+                     if (isIdentical(root, subRoot)) {
                             return true;
                      }
               }
-              
-              return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+
+              return isSubtree(root.left, subRoot)
+                            || isSubtree(root.right, subRoot);
        }
-       
 
        public static void main(String args[]) {
 
-             
+              /*
+               * 1
+               * / \
+               * 2 3
+               * / \ \
+               * 4 5 6
+               */
 
               Node root = new Node(1);
               root.left = new Node(2);
@@ -808,7 +898,11 @@ public class binaryTree {
               root.left.right = new Node(5);
               root.right.right = new Node(6);
 
-              
+              /*
+               * 2
+               * / \
+               * 4 5
+               */
 
               Node subRoot = new Node(2);
               subRoot.left = new Node(4);
@@ -818,18 +912,29 @@ public class binaryTree {
        }
 }
 
+/*
+ * Output:
+ * true
+ */
 
 
+// ============================================================
+// BINARY TREES - PART 6
+// ============================================================
 
-
-Top View of Binary Tree
-
-
-
+// ------------------------------------------------------------
+// Binary Trees | Top View of Binary Tree
+//
+// TC: O(N)
+// Reason: Every node is visited exactly once.
+//
+// SC: O(N)
+// Reason: Queue and HashMap may store all nodes in the worst case.
+// ------------------------------------------------------------
 
 import java.util.*;
 
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -853,59 +958,68 @@ public class binaryTree {
               }
        }
 
-       // Top View of Binary Tree
+       // Prints Top View of Binary Tree
        public static void topView(Node root) {
 
-              if(root == null) {
+              if (root == null) {
                      return;
               }
 
-              Queue<Info> q = new java.util.LinkedList<>();
-              HashMap<Integer, Node> map = new HashMap<>(); 
+              Queue<Info> q = new LinkedList<>();
+              HashMap<Integer, Node> map = new HashMap<>();
 
-              int min = 0, max = 0;
+              int min = 0;
+              int max = 0;
 
               q.add(new Info(root, 0));
               q.add(null);
 
-              while(!q.isEmpty()) {
+              while (!q.isEmpty()) {
 
                      Info curr = q.remove();
 
-                     if(curr == null) {
-                            if(q.isEmpty()) {
+                     if (curr == null) {
+
+                            if (q.isEmpty()) {
                                    break;
                             } else {
                                    q.add(null);
                             }
+
                      } else {
 
-                            if(!map.containsKey(curr.hd)) {
-                            map.put(curr.hd, curr.node);
+                            if (!map.containsKey(curr.hd)) {
+                                   map.put(curr.hd, curr.node);
                             }
 
-                            if(curr.node.left != null) {
-                                   q.add(new Info(curr.node.left, curr.hd-1));
-                                   min = Math.min(min, curr.hd-1);
+                            if (curr.node.left != null) {
+                                   q.add(new Info(curr.node.left, curr.hd - 1));
+                                   min = Math.min(min, curr.hd - 1);
                             }
 
-                            if(curr.node.right != null) {
-                                   q.add(new Info(curr.node.right, curr.hd+1));
-                                   max = Math.max(max, curr.hd+1);
+                            if (curr.node.right != null) {
+                                   q.add(new Info(curr.node.right, curr.hd + 1));
+                                   max = Math.max(max, curr.hd + 1);
                             }
                      }
-               }
-              
-                     
-              for(int i=min; i<=max; i++) {
-                     System.out.print(map.get(i).data+" ");
               }
+
+              for (int i = min; i <= max; i++) {
+                     System.out.print(map.get(i).data + " ");
+              }
+
               System.out.println();
        }
 
        public static void main(String args[]) {
 
-              
+              /*
+               * 1
+               * / \
+               * 2 3
+               * / \ / \
+               * 4 5 6 7
+               */
 
               Node root = new Node(1);
               root.left = new Node(2);
@@ -919,13 +1033,22 @@ public class binaryTree {
        }
 }
 
+/*
+ * Output:
+ * 4 2 1 3 7
+ */
 
+// ------------------------------------------------------------
+// Binary Trees | Kth Level of Binary Tree
+//
+// TC: O(N)
+// Reason: Every node is visited at most once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-x
-
-Kth Level of a Binary Tree
-
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -939,25 +1062,31 @@ public class binaryTree {
               }
        }
 
-       // Prints all nodes at Kth level
-       public static void KLevel(Node root, int level, int K) {
+       // Prints Nodes at Kth Level
+       public static void KLevel(Node root, int level, int k) {
 
-              if(root == null) {
+              if (root == null) {
                      return;
               }
 
-              if(level == K) {
-                     System.out.print(root.data+" ");
+              if (level == k) {
+                     System.out.print(root.data + " ");
                      return;
               }
 
-              KLevel(root.left, level+1, K);
-              KLevel(root.right, level+1, K);
+              KLevel(root.left, level + 1, k);
+              KLevel(root.right, level + 1, k);
        }
 
        public static void main(String args[]) {
 
-              
+              /*
+               * 1
+               * / \
+               * 2 3
+               * / \ / \
+               * 4 5 6 7
+               */
 
               Node root = new Node(1);
               root.left = new Node(2);
@@ -967,24 +1096,35 @@ public class binaryTree {
               root.right.left = new Node(6);
               root.right.right = new Node(7);
 
-              int K = 3;
+              int k = 3;
 
-              KLevel(root, 1, K);
+              KLevel(root, 1, k);
        }
 }
 
+/*
+ * Output:
+ * 4 5 6 7
+ */
 
 
+// ============================================================
+// BINARY TREES - PART 7
+// ============================================================
 
-
-Lowest Common Ancestor (Approach 1 - Using Paths)
-
-
-
+// ------------------------------------------------------------
+// Binary Trees | Lowest Common Ancestor (Approach 1)
+//
+// TC: O(N)
+// Reason: getPath() is called twice and both paths are compared.
+//
+// SC: O(N)
+// Reason: Two ArrayLists store the paths and recursion uses O(H).
+// ------------------------------------------------------------
 
 import java.util.*;
 
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -998,31 +1138,31 @@ public class binaryTree {
               }
        }
 
-       // Finds root to node path
+       // Finds Root to Node Path
        public static boolean getPath(Node root, int n, ArrayList<Node> path) {
 
-              if(root == null) {
+              if (root == null) {
                      return false;
               }
 
               path.add(root);
 
-              if(root.data == n) {
+              if (root.data == n) {
                      return true;
               }
 
               boolean foundLeft = getPath(root.left, n, path);
               boolean foundRight = getPath(root.right, n, path);
 
-              if(foundLeft || foundRight) {
+              if (foundLeft || foundRight) {
                      return true;
               }
 
-              path.remove(path.size()-1);
+              path.remove(path.size() - 1);
               return false;
        }
 
-       // Lowest Common Ancestor
+       // Lowest Common Ancestor (Approach 1)
        public static Node lca(Node root, int n1, int n2) {
 
               ArrayList<Node> path1 = new ArrayList<>();
@@ -1031,21 +1171,26 @@ public class binaryTree {
               getPath(root, n1, path1);
               getPath(root, n2, path2);
 
-              int i=0;
+              int i = 0;
 
-              for(; i<path1.size() && i<path2.size(); i++) {
-                     if(path1.get(i) != path2.get(i)) {
+              for (; i < path1.size() && i < path2.size(); i++) {
+                     if (path1.get(i) != path2.get(i)) {
                             break;
                      }
               }
 
-              return path1.get(i-1);
+              return path1.get(i - 1);
        }
-       
 
        public static void main(String args[]) {
 
-              
+              /*
+               * 1
+               * / \
+               * 2 3
+               * / \ / \
+               * 4 5 6 7
+               */
 
               Node root = new Node(1);
               root.left = new Node(2);
@@ -1058,29 +1203,26 @@ public class binaryTree {
               int n1 = 4;
               int n2 = 5;
 
-              System.out.println
-              (lca(root,n1,n2).data);
+              System.out.println(lca(root, n1, n2).data);
        }
 }
 
+/*
+ * Output:
+ * 2
+ */
 
+// ------------------------------------------------------------
+// Binary Trees | Lowest Common Ancestor (Approach 2)
+//
+// TC: O(N)
+// Reason: Every node is visited only once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-
-
-
-Lowest Common Ancestor (Approach 2 - Optimized)
-
-
-
-
-
-
-
-
-
-
-
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -1094,21 +1236,21 @@ public class binaryTree {
               }
        }
 
-       // Optimized Lowest Common Ancestor
+       // Lowest Common Ancestor (Optimized)
        public static Node lca2(Node root, int n1, int n2) {
 
-              if(root == null || root.data == n1 || root.data == n2) {
+              if (root == null || root.data == n1 || root.data == n2) {
                      return root;
               }
 
               Node leftLca = lca2(root.left, n1, n2);
               Node rightLca = lca2(root.right, n1, n2);
 
-              if(leftLca == null) {
+              if (leftLca == null) {
                      return rightLca;
               }
 
-              if(rightLca == null) {
+              if (rightLca == null) {
                      return leftLca;
               }
 
@@ -1117,36 +1259,52 @@ public class binaryTree {
 
        public static void main(String args[]) {
 
-              
+              /*
+               * 1
+               * / \
+               * 2 3
+               * / \ / \
+               * 4 5 6 7
+               */
 
               Node root = new Node(1);
               root.left = new Node(2);
               root.right = new Node(3);
               root.left.left = new Node(4);
               root.left.right = new Node(5);
-              root.right.right = new Node(6);
+              root.right.left = new Node(6);
+              root.right.right = new Node(7);
 
               int n1 = 4;
-              int n2 = 6;
+              int n2 = 5;
 
               System.out.println(lca2(root, n1, n2).data);
        }
 }
 
+/*
+ * Output:
+ * 2
+ */
 
 
 
+// ============================================================
+// BINARY TREES - PART 8
+// ============================================================
 
+// ------------------------------------------------------------
+// Binary Trees | Minimum Distance Between Two Nodes
+//
+// TC: O(N)
+// Reason: lca2() -> O(N), dist() for n1 -> O(N), dist() for n2 -> O(N).
+// Total = O(N) + O(N) + O(N) = O(3N) = O(N).
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-
-
-
-
-Minimum Distance Between Two Nodes
-
-
-
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
@@ -1184,23 +1342,23 @@ public class binaryTree {
        // Distance from LCA to given node
        public static int dist(Node root, int n) {
 
-              if(root == null) {
+              if (root == null) {
                      return -1;
               }
 
-              if(root.data == n) {
+              if (root.data == n) {
                      return 0;
               }
 
               int leftDist = dist(root.left, n);
               int rightDist = dist(root.right, n);
 
-              if(leftDist == -1 && rightDist == -1) {
+              if (leftDist == -1 && rightDist == -1) {
                      return -1;
-              } else if(leftDist == -1) {
-                     return rightDist+1;
+              } else if (leftDist == -1) {
+                     return rightDist + 1;
               } else {
-                     return leftDist+1;
+                     return leftDist + 1;
               }
        }
 
@@ -1212,10 +1370,18 @@ public class binaryTree {
               int leftDist = dist(lca, n1);
               int rightDist = dist(lca, n2);
 
-              return leftDist+rightDist;
+              return leftDist + rightDist;
        }
 
        public static void main(String args[]) {
+
+              /*
+               * 1
+               * / \
+               * 2 3
+               * / \ / \
+               * 4 5 6 7
+               */
 
               Node root = new Node(1);
               root.left = new Node(2);
@@ -1232,59 +1398,71 @@ public class binaryTree {
        }
 }
 
+/*
+ * Output:
+ * 4
+ */
 
+// ------------------------------------------------------------
+// Binary Trees | Kth Ancestor of a Node
+//
+// TC: O(N)
+// Reason: Every node is visited exactly once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
-
-
-
-Kth Ancestor of a Node in Binary Tree (Optimized Recursive Approach)
-
-
-
-public class binaryTree {
+public class BinaryTree {
 
        static class Node {
               int data;
-              Node left, right;
+              Node left;
+              Node right;
 
               Node(int data) {
                      this.data = data;
-                     left = right = null;
+                     this.left = null;
+                     this.right = null;
               }
        }
 
        // Finds Kth Ancestor
        public static int kAncestor(Node root, int n, int k) {
 
-              if(root == null) {
+              if (root == null) {
                      return -1;
               }
 
-              if(root.data == n) {
+              if (root.data == n) {
                      return 0;
               }
 
-              int leftD = kAncestor(root.left, n, k);
-              int rightD = kAncestor(root.right, n, k);
+              int leftDist = kAncestor(root.left, n, k);
+              int rightDist = kAncestor(root.right, n, k);
 
-              if(leftD == -1 && rightD == -1) {
+              if (leftDist == -1 && rightDist == -1) {
                      return -1;
               }
 
-              int max = Math.max(leftD, rightD);
+              int max = Math.max(leftDist, rightDist);
 
-              if(max+1 == k) {
-                     System.out.println(k + "th Ancestor from " + n + " node is: " + root.data);
+              if (max + 1 == k) {
+                     System.out.println(k + "th Ancestor of node " + n + " is: " + root.data);
               }
 
-              
-              return max+1;
+              return max + 1;
        }
 
-       
        public static void main(String args[]) {
 
-
+              /*
+               * 1
+               * / \
+               * 2 3
+               * / \ / \
+               * 4 5 6 7
+               */
 
               Node root = new Node(1);
               root.left = new Node(2);
@@ -1301,31 +1479,42 @@ public class binaryTree {
        }
 }
 
+/*
+ * Output:
+ * 2th Ancestor of node 5 is: 1
+ */
 
-
-
-Transform to Sum Tree (Binary Tree)
-
+// ------------------------------------------------------------
+// Binary Trees | Transform to Sum Tree
+//
+// TC: O(N)
+// Reason: Every node is visited exactly once.
+//
+// SC: O(H)
+// Reason: Recursive call stack stores at most H nodes.
+// ------------------------------------------------------------
 
 public class BinaryTree {
 
        static class Node {
               int data;
-              Node left, right;
+              Node left;
+              Node right;
 
               Node(int data) {
                      this.data = data;
-                     left = right = null;
+                     this.left = null;
+                     this.right = null;
               }
        }
 
        // Transform Binary Tree into Sum Tree
        public static int transform(Node root) {
 
-              if(root == null) {
+              if (root == null) {
                      return 0;
               }
-              
+
               int leftChild = transform(root.left);
               int rightChild = transform(root.right);
 
@@ -1342,18 +1531,33 @@ public class BinaryTree {
        // Preorder Traversal
        public static void preOrder(Node root) {
 
-              if(root == null) {
+              if (root == null) {
                      return;
               }
 
-              System.out.println(root.data+" ");
+              System.out.print(root.data + " ");
+
               preOrder(root.left);
               preOrder(root.right);
        }
-       
+
        public static void main(String args[]) {
 
-            
+              /*
+               * 1
+               * / \
+               * 2 3
+               * / \ / \
+               * 4 5 6 7
+               * 
+               * Expected Sum Tree
+               * 
+               * 27
+               * / \
+               * 9 13
+               * / \ / \
+               * 0 0 0 0
+               */
 
               Node root = new Node(1);
               root.left = new Node(2);
@@ -1364,12 +1568,17 @@ public class BinaryTree {
               root.right.right = new Node(7);
 
               transform(root);
-              preOrder(root);
 
+              preOrder(root);
        }
 }
 
-*/
+/*
+ * Output:
+ * 27 9 0 0 13 0 0
+ */
+
+
 
 
 
